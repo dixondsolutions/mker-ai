@@ -1,0 +1,64 @@
+{
+  "name": "@kit/chatbot-widget",
+  "private": true,
+  "version": "0.1.0",
+  "exports": {
+    ".": "./src/index.ts",
+    "./chatbot": "./src/chatbot/index.ts"
+  },
+  "scripts": {
+    "clean": "rm -rf .turbo node_modules",
+    "lint": "eslint .",
+    "format": "prettier --check \"**/*.{mjs,ts,md,json}\"",
+    "typecheck": "tsc --noEmit",
+    "build": "rollup -c ./rollup.config.mjs",
+    "build:production": "rollup -c ./rollup.config.mjs --environment=production",
+    "serve": "npx http-server ./dist --cors -p 9099"
+  },
+  "devDependencies": {
+    "@ai-sdk/react": "^2.0.16",
+    "@babel/preset-react": "7.26.3",
+    "@babel/preset-typescript": "^7.23.3",
+    "@kit/eslint-config": "workspace:*",
+    "@kit/prettier-config": "workspace:*",
+    "@kit/tsconfig": "workspace:*",
+    "@kit/ui": "workspace:*",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^28.0.3",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-replace": "^5.0.7",
+    "@rollup/plugin-terser": "latest",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "@tailwindcss/postcss": "^4.1.17",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "19.2.2",
+    "@types/uuid": "latest",
+    "ai": "5.0.76",
+    "dotenv": "17.2.3",
+    "eslint": "^9.39.1",
+    "lucide-react": "^0.553.0",
+    "postcss": "^8.5.3",
+    "prettier": "^3.6.2",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "rollup": "^4.35.0",
+    "rollup-plugin-inject-process-env": "latest",
+    "rollup-plugin-polyfill-node": "^0.13.0",
+    "rollup-plugin-postcss": "latest",
+    "rollup-plugin-tsconfig-paths": "^1.5.2",
+    "rollup-plugin-visualizer": "latest",
+    "tailwindcss": "4.1.15",
+    "tailwindcss-animate": "^1.0.7",
+    "typescript": "^5.9.3",
+    "uuid": "11.1.0"
+  },
+  "prettier": "@kit/prettier-config",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "src/*"
+      ]
+    }
+  }
+}
