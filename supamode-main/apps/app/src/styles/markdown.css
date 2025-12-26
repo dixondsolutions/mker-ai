@@ -1,0 +1,144 @@
+.markdown {
+  @apply font-sans text-sm;
+}
+
+.markdown h1 {
+  @apply font-heading text-foreground mt-6 text-3xl font-semibold tracking-tight lg:mt-10 dark:text-white;
+}
+
+.markdown h2 {
+  @apply font-heading text-foreground mt-6 mb-3 text-2xl font-semibold tracking-tight lg:mt-8 lg:mb-6 dark:text-white;
+}
+
+.markdown h3 {
+  @apply font-heading text-foreground text-xl font-semibold tracking-tight lg:mt-6 dark:text-white;
+}
+
+.markdown h4 {
+  @apply text-foreground text-lg font-medium tracking-tight lg:mt-4 dark:text-white;
+}
+
+.markdown h5 {
+  @apply text-foreground text-base font-medium tracking-tight lg:mt-2 dark:text-white;
+}
+
+.markdown h6 {
+  @apply text-foreground mt-1 text-sm font-normal tracking-tight dark:text-white;
+}
+
+.markdown p {
+  @apply mt-2 mb-3 text-sm leading-7 lg:mt-4 lg:mb-6;
+}
+
+.markdown li {
+  @apply relative my-1.5 text-sm leading-7;
+}
+
+.markdown ul > li:before {
+  content: '-';
+
+  @apply mr-2;
+}
+
+.markdown ol > li:before {
+  @apply inline-flex;
+
+  content: counters(counts, '.') '. ';
+  font-feature-settings: 'tnum';
+}
+
+.markdown b,
+.markdown strong {
+  @apply text-secondary-foreground font-bold dark:text-white;
+}
+
+.markdown img,
+.markdown video {
+  @apply rounded-md;
+}
+
+.markdown ul,
+.markdown ol {
+  @apply pl-1;
+}
+
+.markdown ol > li {
+  counter-increment: counts;
+}
+
+.markdown ol > li:before {
+  @apply mr-2 inline-flex font-semibold;
+
+  content: counters(counts, '.') '. ';
+  font-feature-settings: 'tnum';
+}
+
+.markdown p > code,
+.markdown li > code {
+  @apply bg-muted/50 text-secondary-foreground border p-0.5 font-mono text-sm font-semibold;
+}
+
+.markdown pre {
+  @apply bg-muted/50 border-border text-foreground max-w-full whitespace-pre-wrap break-words rounded-md border p-4 font-mono text-sm;
+}
+
+.markdown blockquote {
+  @apply text-muted-foreground my-4 rounded border p-2 font-medium;
+}
+
+.markdown blockquote p {
+  @apply m-0;
+}
+
+.markdown a {
+  @apply underline;
+}
+
+.markdown hr {
+  @apply border-border mt-8 mb-6;
+}
+
+.markdown [role='alert'] {
+  @apply m-0 my-8 py-4;
+}
+
+.markdown [role='alert'] * {
+  color: inherit;
+  @apply m-0 p-0 text-sm;
+}
+
+.markdown [role='alert'] h5 {
+  color: inherit;
+}
+
+.markdown table {
+  @apply my-4 w-full caption-bottom text-sm;
+}
+
+.markdown th {
+  @apply [&_tr]:border-b;
+}
+
+.markdown tbody {
+  @apply [&_tr:last-child]:border-0;
+}
+
+.markdown tfoot {
+  @apply bg-muted/50 border-t font-medium [&>tr]:last:border-b-0;
+}
+
+.markdown tr {
+  @apply data-[state=selected]:bg-muted border-b transition-colors;
+}
+
+.markdown thead tr {
+  @apply bg-muted/50;
+}
+
+.markdown th {
+  @apply text-secondary-foreground h-10 px-2 text-left align-middle font-medium [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px];
+}
+
+.markdown td {
+  @apply p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px];
+}

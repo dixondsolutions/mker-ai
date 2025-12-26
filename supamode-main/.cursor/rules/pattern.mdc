@@ -1,0 +1,13 @@
+---
+description: Use this when creating a new new feature, API, Router, Loader, Action. It's to propertly connect client and API with a scalable, elegant pattern.
+globs: 
+alwaysApply: false
+---
+Always use the router/loader/action convention.
+
+1. **Service**: Create a new service to fetch the data using Drizzle - just like [table-metadata.service.ts](mdc:packages/features/settings/src/api/services/table-metadata.service.ts)
+2. **Loader**: Create a Loader - just like [loaders.ts](mdc:packages/features/settings/src/loaders.ts) if you fetch data
+3. **Hono RPC**: Create an RPC - just like [update-columns-metadata-action.ts](mdc:packages/features/settings/src/actions/update-columns-metadata-action.ts) This is a Hono client-side router that will execute fetch function using the type-safe instructions from the Hono API Route information
+4. **Router**: Using the router loader, load the members data into the page and pass it to the table (just like [resources-config-form.tsx](mdc:packages/features/settings/src/components/resources/resources-config-form.tsx))
+5. **Form Actions**: Use form actions using "useFetcher" and router actions
+5. **API**: Register the Hono APIs [index.ts](mdc:apps/api/app/routes/index.ts)

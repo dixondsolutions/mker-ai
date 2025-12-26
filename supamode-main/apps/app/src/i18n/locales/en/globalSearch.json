@@ -1,0 +1,9 @@
+{
+  "title": "Global Search",
+  "description": "Type in a search query to see results across anything in your project.",
+  "commandInputPlaceholder": "Search anything...",
+  "noResultsFound": "No results found.",
+  "enterMoreCharacters": "Enter at least 2 characters to see results.",
+  "errorOccurred": "An error occurred. Please try again.",
+  "inTable": "in {{table}}"
+}

@@ -1,0 +1,32 @@
+{
+  "name": "@kit/table",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf .turbo node_modules",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --check \"**/*.{js,cjs,mjs,ts,tsx,md,json}\""
+  },
+  "devDependencies": {
+    "@kit/eslint-config": "0.1.0",
+    "@kit/formatters": "workspace:*",
+    "@kit/prettier-config": "0.1.0",
+    "@kit/shared": "workspace:*",
+    "@kit/types": "workspace:*",
+    "@kit/typescript-config": "0.1.0",
+    "@kit/ui": "workspace:*",
+    "@tanstack/react-table": "catalog:",
+    "@types/react": "catalog:",
+    "lucide-react": "catalog:",
+    "react": "catalog:",
+    "react-i18next": "catalog:",
+    "react-router": "catalog:",
+    "typescript": "catalog:"
+  }
+}

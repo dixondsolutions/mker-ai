@@ -1,0 +1,42 @@
+{
+  "name": "@kit/resources",
+  "private": true,
+  "version": "0.1.0",
+  "exports": {
+    ".": "./index.ts",
+    "./routes": "./src/api/routes/index.ts",
+    "./services": "./src/api/services/index.ts",
+    "./hooks": "./src/hooks/index.ts",
+    "./loaders": "./src/loaders/index.ts",
+    "./types": "./src/types.ts"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "src/*"
+      ]
+    }
+  },
+  "scripts": {
+    "clean": "rm -rf .turbo node_modules",
+    "lint": "eslint .",
+    "format": "prettier --check \"**/*.{mjs,ts,md,json}\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@hono/zod-validator": "catalog:",
+    "@kit/api": "0.1.0",
+    "@kit/eslint-config": "workspace:*",
+    "@kit/prettier-config": "workspace:*",
+    "@kit/shared": "workspace:*",
+    "@kit/supabase": "0.1.0",
+    "@kit/typescript-config": "workspace:*",
+    "@tanstack/react-query": "catalog:",
+    "@types/react": "catalog:",
+    "drizzle-orm": "catalog:",
+    "hono": "catalog:",
+    "react": "catalog:",
+    "zod": "catalog:"
+  },
+  "prettier": "@kit/prettier-config"
+}

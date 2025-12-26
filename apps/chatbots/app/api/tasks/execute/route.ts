@@ -9,7 +9,7 @@ import { getLogger } from '@kit/shared/logger';
 import { getSupabaseServerAdminClient } from '@kit/supabase/server-admin-client';
 
 import Crawler from '~/lib/chatbots/crawler';
-import Parser from '~/lib/chatbots/parser';
+import { getTitleFromMarkdown } from './markdown-utils';
 import { Database } from '~/lib/database.types';
 import { createDocumentsService } from '~/lib/documents/documents.service';
 import { createJobsService } from '~/lib/jobs/jobs.service';
@@ -86,7 +86,6 @@ async function handler(req: NextRequest) {
   }
 
   const crawler = new Crawler();
-  const parser = new Parser();
   const vectorStore = await getVectorStore(adminClient);
 
   logger.info(
@@ -106,7 +105,11 @@ async function handler(req: NextRequest) {
           const host = new URL(url).origin;
           const contents = await crawler.crawl(url);
 
-          return await parser.parse(contents, host);
+          // Firecrawl returns markdown, so we don't need to parse HTML
+          return {
+            content: contents,
+            title: await getTitleFromMarkdown(contents, url),
+          };
         } catch (e) {
           logger.warn(
             {

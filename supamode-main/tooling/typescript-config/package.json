@@ -1,0 +1,12 @@
+{
+  "name": "@kit/typescript-config",
+  "version": "0.1.0",
+  "private": true,
+  "files": [
+    "base.json"
+  ],
+  "devDependencies": {
+    "hono": "catalog:",
+    "vite": "catalog:"
+  }
+}

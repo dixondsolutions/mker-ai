@@ -1,0 +1,60 @@
+{
+  "name": "@kit/filters",
+  "private": true,
+  "version": "0.1.0",
+  "exports": {
+    ".": "./index.ts",
+    "./components": "./src/components.tsx",
+    "./hooks": "./src/hooks/index.ts",
+    "./types": "./src/types.ts"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "src/*"
+      ]
+    }
+  },
+  "scripts": {
+    "clean": "rm -rf .turbo node_modules",
+    "lint": "eslint .",
+    "format": "prettier --check \"**/*.{mjs,ts,md,json}\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@hono/zod-validator": "catalog:",
+    "@hookform/resolvers": "catalog:",
+    "@kit/api": "0.1.0",
+    "@kit/eslint-config": "workspace:*",
+    "@kit/filters-core": "workspace:*",
+    "@kit/formatters": "workspace:*",
+    "@kit/prettier-config": "workspace:*",
+    "@kit/resources": "0.1.0",
+    "@kit/shared": "workspace:*",
+    "@kit/storage-explorer": "workspace:*",
+    "@kit/supabase": "0.1.0",
+    "@kit/text-editor": "workspace:*",
+    "@kit/types": "workspace:*",
+    "@kit/typescript-config": "0.1.0",
+    "@kit/ui": "0.1.0",
+    "@marsidev/react-turnstile": "catalog:",
+    "@radix-ui/react-icons": "catalog:",
+    "@supabase/supabase-js": "catalog:",
+    "@tanstack/react-query": "catalog:",
+    "@tanstack/react-table": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "date-fns": "catalog:",
+    "drizzle-orm": "catalog:",
+    "hono": "catalog:",
+    "lucide-react": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "react-fast-compare": "catalog:",
+    "react-hook-form": "catalog:",
+    "react-router": "catalog:",
+    "rxjs": "catalog:",
+    "zod": "catalog:"
+  },
+  "prettier": "@kit/prettier-config"
+}

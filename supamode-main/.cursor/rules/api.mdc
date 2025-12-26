@@ -1,0 +1,10 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+The API uses Hono [index.ts](mdc:apps/api/app/routes/index.ts) and acts as a self-deployed API layer separately from the SPA. The client uses the Drizzle client [drizzle-client.ts](mdc:packages/supabase/src/clients/drizzle-client.ts) to interact with the Database.
+
+A Hono route rarely contains any logic: instead, create a service class that encapsulate this logic, and call it in the Hono route.
+
+Export a Hono API from a package and let the main Hono entrypoint register it.

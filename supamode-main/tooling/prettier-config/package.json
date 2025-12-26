@@ -1,0 +1,16 @@
+{
+  "name": "@kit/prettier-config",
+  "private": true,
+  "version": "0.1.0",
+  "main": "index.mjs",
+  "scripts": {
+    "clean": "rm -rf .turbo node_modules",
+    "format": "prettier --check \"**/*.{mjs,json}\""
+  },
+  "dependencies": {
+    "@trivago/prettier-plugin-sort-imports": "catalog:",
+    "prettier": "catalog:",
+    "prettier-plugin-tailwindcss": "catalog:"
+  },
+  "prettier": "./index.mjs"
+}

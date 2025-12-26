@@ -1,0 +1,1088 @@
+{
+  "title": "Dashboard",
+  "description": "Your application's most important stats in one place",
+  "dashboardCreated": "Dashboard created successfully",
+  "dashboardCreateFailed": "Failed to create dashboard",
+  "dashboardUpdated": "Dashboard updated successfully",
+  "dashboardUpdateFailed": "Failed to update dashboard",
+  "dashboardDeleted": "Dashboard deleted successfully",
+  "dashboardDeleteFailed": "Failed to delete dashboard",
+  "layoutUpdated": "Layout updated",
+  "layoutUpdateFailed": "Failed to update layout",
+  "actions": {
+    "createDashboard": "Create Dashboard",
+    "newDashboard": "New Dashboard",
+    "addWidget": "Add Widget",
+    "exitEdit": "Exit Edit Mode",
+    "exitAndSave": "Exit & Save",
+    "addWidgets": "Add Widgets",
+    "editDashboard": "Edit Dashboard",
+    "saveDashboard": "Save Dashboard",
+    "saveAndExit": "Save & Exit",
+    "preview": "Preview",
+    "cancel": "Cancel",
+    "reset": "Discard Changes",
+    "open": "Open",
+    "edit": "Edit",
+    "delete": "Delete",
+    "deleteDashboard": "Delete Dashboard",
+    "createWidget": "Create Widget",
+    "updateWidget": "Update Widget",
+    "saving": "Saving...",
+    "creating": "Creating...",
+    "dashboardCreated": "Dashboard created successfully",
+    "createFailed": "Failed to create dashboard",
+    "dashboardUpdated": "Dashboard updated successfully",
+    "dashboardUpdateFailed": "Failed to update dashboard",
+    "dashboardDeleted": "Dashboard deleted successfully",
+    "dashboardDeleteFailed": "Failed to delete dashboard",
+    "renameDashboard": "Rename Dashboard",
+    "addYourFirstWidget": "Add Your First Widget",
+    "goToDashboards": "Go to Dashboards"
+  },
+  "labels": {
+    "name": "Name",
+    "description": "Description (Optional)",
+    "widgets": "widgets",
+    "public": "Public",
+    "private": "Private",
+    "visibility": "Visibility",
+    "created": "Created",
+    "layoutItems": "Layout Items",
+    "widgetTitle": "Widget Title",
+    "widgetName": "Widget Name",
+    "schema": "Schema",
+    "table": "Table",
+    "basic": "Basic",
+    "display": "Display",
+    "query": "Query",
+    "filters": "Filters",
+    "dataSource": "Data Source",
+    "showLegend": "Show Legend",
+    "showPagination": "Show Pagination",
+    "pageSize": "Page Size",
+    "tags": "Tags",
+    "numberFormat": "Number Format",
+    "suffix": "Suffix",
+    "shareWithRoles": "Share with Roles",
+    "optional": "(optional)"
+  },
+  "placeholders": {
+    "enterDashboardName": "Enter dashboard name",
+    "describeWhatThisDashboardShows": "Describe what this dashboard shows...",
+    "addATag": "Add a tag...",
+    "searchDashboards": "Search dashboards...",
+    "selectAggregation": "Select aggregation",
+    "enterColumnName": "Enter column name",
+    "enterFilterConditions": "Enter filter conditions (JSON format)",
+    "enterSortConfiguration": "Enter sort configuration (JSON format)"
+  },
+  "messages": {
+    "dashboardNotFound": "Dashboard not found",
+    "createNewDashboardDescription": "Create a new dashboard to visualize your data with custom widgets",
+    "giveYourDashboardDescriptiveName": "Give your dashboard a descriptive name",
+    "helpOthersUnderstandPurpose": "Help others understand the purpose of this dashboard",
+    "pressEnterToAddTags": "Press Enter to add tags. Tags help organize and find your dashboards.",
+    "createAndManageAnalyticsDashboards": "Create and manage your analytics dashboards",
+    "noDashboardsFound": "Create your first dashboard",
+    "noDashboardsMatch": "No dashboards match \"{query}\". Try a different search term.",
+    "getStartedByCreating": "Get started by creating your first dashboard to visualize your data.",
+    "areYouSureDeleteDashboard": "Are you sure you want to delete \"{{name}}\"? This action cannot be undone. All widgets and data associated with this dashboard will be permanently removed.",
+    "actionCannotBeUndone": "This action cannot be undone.",
+    "dragAndDropWidgets": "Drag and drop widgets to customize your dashboard layout",
+    "unsavedChanges": "Unsaved changes",
+    "chooseWidgetType": "Choose a widget type to add to your dashboard. You can configure it after adding.",
+    "areYouSureDeleteWidget": "Are you sure you want to delete this widget?",
+    "youHaveUnsavedChanges": "You have unsaved changes. Are you sure you want to cancel?",
+    "lastUpdated": "Last updated",
+    "refreshAllWidgets": "Refresh all widgets",
+    "shareDashboard": "Share dashboard",
+    "noWidgetsYet": "No widgets yet",
+    "dashboardIsEmpty": "This dashboard is empty. Add widgets to start visualizing your data.",
+    "dashboardDetails": "Dashboard Details",
+    "saved": "Saved",
+    "updated": "Updated",
+    "moreTag": "+{count} more",
+    "copy": "(Copy)",
+    "descriptiveTitle": "A descriptive title for your widget",
+    "databaseSchemaName": "Database schema name",
+    "databaseTableName": "Database table name",
+    "editWidget": "Edit Widget",
+    "configureWidget": "Configure Widget",
+    "configureWidgetSettings": "Configure your {{widgetType}} widget settings",
+    "showingAllDashboards": "Showing all dashboards you have access to",
+    "showingMyDashboards": "Showing dashboards you created",
+    "showingSharedDashboards": "Showing public dashboards shared with you",
+    "showingRecentDashboards": "Showing your recently viewed dashboards",
+    "searchResults": "Found {count} dashboard(s) matching '{query}'",
+    "loadingDashboard": "Loading dashboard...",
+    "separator": "•",
+    "loadingDashboards": "Loading dashboards...",
+    "showingResults": "Showing {start} to {end} of {total} results",
+    "page": "Page",
+    "of": "of",
+    "addWidgetInstructions": "Use the \"Add Widget\" button in the top-right corner to get started.",
+    "widgetPositionAdjusted": "Widget position was adjusted to avoid overlap",
+    "widgetPositionAdjustedDescription": "Your widget has been placed in the next available position.",
+    "shareDashboardWithRoles": "Share this dashboard with specific roles and set their permission levels."
+  },
+  "error": {
+    "widgetErrorTitle": "Widget Error",
+    "somethingWentWrong": "Something went wrong",
+    "unknownError": "An unknown error occurred.",
+    "tryAgain": "Try Again",
+    "widgetFailed": "Widget Failed to Load",
+    "namedWidgetFailed": "{{name}} Failed to Load",
+    "showDetails": "Show Details",
+    "errorMessage": "Error Message",
+    "stackTrace": "Stack Trace",
+    "componentStack": "Component Stack",
+    "networkErrorDescription": "A network error occurred. Please check your internet connection.",
+    "renderErrorDescription": "A rendering error occurred with the widget. This might be due to invalid data or configuration.",
+    "genericErrorDescription": "An unexpected error occurred. Please try again or contact support if the issue persists.",
+    "maxRetriesReached": "Max Retries Reached",
+    "maxRetriesDescription": "The widget could not be loaded after multiple attempts. Please check the configuration or contact support.",
+    "widgetId": "Widget ID: {{id}}"
+  },
+  "widgetPalette": {
+    "tabs": {
+      "custom": "Custom Widgets",
+      "templates": "Templates"
+    },
+    "categories": {
+      "charts": {
+        "name": "Charts",
+        "description": "Visualize data with various chart types"
+      },
+      "metrics": {
+        "name": "Metrics & KPIs",
+        "description": "Display key performance indicators"
+      },
+      "tables": {
+        "name": "Tables & Lists",
+        "description": "Display detailed data in tabular format"
+      },
+      "specialized": {
+        "name": "Specialized",
+        "description": "Domain-specific widgets"
+      }
+    },
+    "widgets": {
+      "barChart": {
+        "name": "Bar Chart",
+        "description": "Compare values across categories"
+      },
+      "lineChart": {
+        "name": "Line Chart",
+        "description": "Show trends over time"
+      },
+      "pieChart": {
+        "name": "Pie Chart",
+        "description": "Display proportions and percentages"
+      },
+      "areaChart": {
+        "name": "Area Chart",
+        "description": "Show cumulative values over time"
+      },
+      "numberMetric": {
+        "name": "Number Metric",
+        "description": "Show a single important number"
+      },
+      "gauge": {
+        "name": "Gauge",
+        "description": "Progress toward a goal"
+      },
+      "trendMetric": {
+        "name": "Trend Metric",
+        "description": "Number with trend indicator"
+      },
+      "dataTable": {
+        "name": "Data Table",
+        "description": "Sortable, filterable data table"
+      },
+      "simpleList": {
+        "name": "Simple List",
+        "description": "Clean list view of records"
+      },
+      "calendar": {
+        "name": "Calendar",
+        "description": "Display events and schedules"
+      },
+      "userStats": {
+        "name": "User Stats",
+        "description": "User activity and demographics"
+      },
+      "revenue": {
+        "name": "Revenue",
+        "description": "Financial metrics and trends"
+      }
+    },
+    "dragInstructions": "Drag widgets to your dashboard or click to add instantly",
+    "placeholder": {
+      "heading": "Add Your First Widget",
+      "description": "Start building your dashboard by adding charts, metrics, or tables to visualize your data.",
+      "chart": {
+        "name": "Chart",
+        "description": "Visualize data with bar, line, pie, or area charts"
+      },
+      "metric": {
+        "name": "Metric",
+        "description": "Display key performance indicators and KPIs"
+      },
+      "table": {
+        "name": "Table",
+        "description": "Show detailed data in tabular format"
+      },
+      "browseAll": "Browse All Widgets",
+      "addWidgetToDashboard": "Add Widget to Dashboard",
+      "chooseWidgetType": "Choose a widget type to add to your dashboard. You can configure it after adding.",
+      "dropWidgetHere": "Drop widget here"
+    }
+  },
+  "aggregations": {
+    "count": "Count",
+    "sum": "Sum",
+    "avg": "Average",
+    "min": "Minimum",
+    "max": "Maximum"
+  },
+  "timeAggregations": {
+    "hour": "Hour",
+    "day": "Day",
+    "week": "Week",
+    "month": "Month",
+    "quarter": "Quarter",
+    "year": "Year"
+  },
+  "seriesTypes": {
+    "grouped": "Grouped",
+    "groupedDescription": "Display series side by side",
+    "stacked": "Stacked",
+    "stackedDescription": "Stack series on top of each other",
+    "overlaid": "Overlaid",
+    "overlaidDescription": "Overlay series on the same axis"
+  },
+  "permissions": {
+    "view": "View",
+    "edit": "Edit"
+  },
+  "roles": {
+    "addRole": "Add Role",
+    "searchRolesPlaceholder": "Search roles...",
+    "noRolesFound": "No roles found.",
+    "errorLoadingRoles": "Error loading roles",
+    "loadingRoles": "Loading roles...",
+    "noRolesAvailable": "No roles available",
+    "unknownRole": "Unknown Role"
+  },
+  "errors": {
+    "nameRequired": "Name is required",
+    "nameMustBeDifferent": "Name must be different from the current name",
+    "nameMax": "Name must be less than {{max}} characters",
+    "dashboardNotFound": "Dashboard Not Found",
+    "dashboardNotFoundDescription": "This dashboard may have been deleted or you may not have permission to view it."
+  },
+  "metrics": {
+    "totalActiveUsers": "Total active users",
+    "totalActiveUsersDescription": "Total users with a recently active session",
+    "totalUsers": "Total Users",
+    "totalUsersDescription": "Total registered users",
+    "activeUsers": "New Users (Last Month)",
+    "activeUsersDescription": "Added in the last 6 months",
+    "mfaAdoption": "MFA Adoption",
+    "mfaAdoptionDescription": "Users with MFA enabled",
+    "totalNewUsers": "Total New Users",
+    "lastYear": "Over the last year",
+    "verificationRate": "Average Verification Rate",
+    "emailVerification": "Email verification completions",
+    "conversionRate": "Login Conversion",
+    "loginConversion": "Of verified users who logged in",
+    "retentionRate": "Retention Rate",
+    "retention": "Users returning after first day"
+  },
+  "charts": {
+    "userGrowth": "User Growth",
+    "authMethods": "Authentication Methods",
+    "userGrowthTrend": "User Growth Trend",
+    "userConversion": "User Conversion Funnel"
+  },
+  "tabs": {
+    "overview": "Overview",
+    "growth": "User Growth",
+    "allDashboards": "All Dashboards",
+    "myDashboards": "My Dashboards",
+    "sharedDashboards": "Shared",
+    "recentlyViewed": "Recent",
+    "favorites": "Favorites"
+  },
+  "templates": {
+    "title": "Widget Templates",
+    "description": "Pre-configured widgets you can add with one click",
+    "noTemplates": "No templates available",
+    "requiredTables": "Required tables",
+    "availableWidgets": "Available Widgets",
+    "add": "Add",
+    "adding": "Adding...",
+    "added": "Added",
+    "applying": "Applying...",
+    "applied": "Applied",
+    "applyTemplate": "Apply Template"
+  },
+  "wizard": {
+    "templateHint": "Or skip the wizard and use a pre-configured template",
+    "useTemplate": "Use a template instead",
+    "metric": {
+      "whatToCalculate": "What do you want to calculate?",
+      "chooseWhatToMeasure": "Choose what you want to measure from your data",
+      "selectWhatToCalculate": "Select what to calculate",
+      "whichColumn": "Which Column?",
+      "whichNumeric": "which numeric column?",
+      "selectNumericColumn": "Select a numeric column",
+      "addUpValuesFrom": "Add up values from",
+      "calculateAverageOf": "Calculate average of",
+      "findMinimum": "Find minimum value in",
+      "findMaximum": "Find maximum value in",
+      "calc": {
+        "count": {
+          "label": "Count records",
+          "description": "How many records are in this table?"
+        },
+        "sum": {
+          "label": "Add up values",
+          "description": "What's the total when you add up all the numbers?"
+        },
+        "avg": {
+          "label": "Calculate average",
+          "description": "What's the average value across all records?"
+        },
+        "min": {
+          "label": "Find minimum",
+          "description": "What's the smallest value?"
+        },
+        "max": {
+          "label": "Find maximum",
+          "description": "What's the largest value?"
+        }
+      }
+    },
+    "createWidget": "Create Widget",
+    "createWidgetDescription": "Create a new widget to visualize your data",
+    "editWidget": "Edit Widget",
+    "editWidgetDescription": "Edit an existing widget to visualize your data",
+    "stepOf": "Step {current} of {total}",
+    "basicInfo": {
+      "title": "Widget Information",
+      "subtitle": "Provide basic details about your widget",
+      "nameHelper": "A descriptive name for your widget",
+      "descriptionHelper": "Optional description of what this widget displays",
+      "placeholders": {
+        "widgetName": "e.g., User Registration Stats",
+        "widgetDescription": "Brief description of what this widget shows..."
+      }
+    },
+    "basicInfoAndType": {
+      "title": "Widget Configuration",
+      "subtitle": "Set up your widget name and select the visualization type"
+    },
+    "widgetType": {
+      "title": "Widget Type",
+      "subtitle": "Select the type of visualization for your data",
+      "chart": {
+        "name": "Chart Widget",
+        "description": "Show trends and comparisons with bar charts, line graphs, or area charts - like sales over time"
+      },
+      "metric": {
+        "name": "Metric Widget",
+        "description": "Display a big number like \"Total: 1,247\" or \"Average: $85.50\" - perfect for KPIs and key statistics"
+      },
+      "table": {
+        "name": "Table Widget",
+        "description": "Show your data in rows and columns - like a list of customers, orders, or any detailed records"
+      },
+      "selectedIcon": "✓"
+    },
+    "dataConfig": {
+      "title": "Data Source",
+      "subtitle": "Select the data source and configure widget settings",
+      "summary": "Configuration Summary",
+      "dataSource": "Data Source",
+      "noDataPreview": "No data preview available"
+    },
+    "preview": {
+      "title": "Preview & Create",
+      "subtitle": "Review your widget configuration and see how it will look",
+      "widgetPreview": "Widget Preview",
+      "configurationSummary": "Configuration Summary",
+      "basicInformation": "Basic Information",
+      "dataSource": "Data Source",
+      "widgetConfiguration": "Widget Configuration",
+      "readyToCreate": "Ready to Create",
+      "readyToCreateHelp": "Click \"Create Widget\" to add this widget to your dashboard",
+      "completeConfiguration": "Complete the configuration to see a preview",
+      "unknownWidgetType": "Unknown widget type",
+      "notSet": "Not set",
+      "notSelected": "Not selected",
+      "enabled": "Enabled",
+      "disabled": "Disabled",
+      "columnsSelected": "{count} selected",
+      "rowsPerPage": "{count} rows",
+      "daysText": "{count} days",
+      "previewComingSoon": "Table preview coming soon",
+      "liveData": "Live Data",
+      "labels": {
+        "name": "Name",
+        "trendComparison": "Trend Comparison",
+        "type": "Type",
+        "description": "Description",
+        "timeAggregation": "Time Aggregation",
+        "multiSeries": "Multi-Series",
+        "groupBy": "Group By",
+        "schema": "Schema",
+        "table": "Table",
+        "filters": "Filters",
+        "active": "active",
+        "selected": "selected",
+        "chartType": "Chart Type",
+        "xAxis": "X-Axis",
+        "yAxis": "Y-Axis",
+        "aggregation": "Aggregation",
+        "metric": "Metric",
+        "calculation": "Calculation",
+        "groupByColumn": "Group By",
+        "trendPeriod": "Trend Period",
+        "days": "days",
+        "columns": "Columns",
+        "sortBy": "Sort By",
+        "pageSize": "Page Size",
+        "rows": "rows",
+        "search": "Search"
+      },
+      "status": {
+        "enabled": "Enabled",
+        "disabled": "Disabled"
+      }
+    },
+    "advancedConfig": {
+      "title": "Advanced Configuration",
+      "subtitle": "Customize widget appearance and behavior"
+    }
+  },
+  "filters": {
+    "title": "Data Filters",
+    "subtitle": "Apply filters to limit the data shown in your widget (optional)",
+    "helpText": "Add filters to narrow down your data. You can combine multiple filters using AND/OR logic.",
+    "activeFilters": "Active Filters",
+    "filtersAppliedCount": "{count} filter{count, plural, one {} other {s}} applied to your data",
+    "noFiltersOptional": "This is optional. Click \"Next\" to continue or add filters above.",
+    "noFiltersApplied": "No filters applied",
+    "configureDataSourceFirst": "Configure Data Source First",
+    "configureDataSourceHelp": "Go back to the previous step to select your data source before setting up filters.",
+    "addFilter": "Add Filter",
+    "addCondition": "Add Condition",
+    "tip": {
+      "title": "💡 Performance Tip",
+      "timeConstraint": "Add a time filter (like \"last 30 days\") to improve query performance and get more focused, actionable data. Large historical datasets can be slow and overwhelming."
+    },
+    "requirement": {
+      "title": "⚠️ Date Filter Required",
+      "dateFilterRequired": "Trend comparison is enabled for this widget. You must add a date filter to define the time period for trend analysis."
+    },
+    "removeFilter": "Remove Filter",
+    "removeCondition": "Remove Condition",
+    "filterBy": "Filter by {column}",
+    "dateRange": "Date Range",
+    "customRange": "Custom Range",
+    "last7Days": "Last 7 Days",
+    "last30Days": "Last 30 Days",
+    "last90Days": "Last 90 Days",
+    "lastYear": "Last Year",
+    "thisMonth": "This Month",
+    "thisYear": "This Year",
+    "aggregation": "Aggregation Method",
+    "groupBy": "Group By",
+    "sortBy": "Sort By",
+    "limit": "Limit Results",
+    "and": "AND",
+    "or": "OR",
+    "operators": {
+      "equals": "Equals",
+      "notEquals": "Not Equals",
+      "greaterThan": "Greater Than",
+      "lessThan": "Less Than",
+      "greaterThanOrEqual": "Greater Than or Equal",
+      "lessThanOrEqual": "Less Than or Equal",
+      "contains": "Contains",
+      "notContains": "Does Not Contain",
+      "startsWith": "Starts With",
+      "endsWith": "Ends With",
+      "in": "In",
+      "notIn": "Not In",
+      "isNull": "Is Null",
+      "isNotNull": "Is Not Null",
+      "between": "Between"
+    },
+    "logicalOperators": {
+      "and": "AND",
+      "or": "OR"
+    },
+    "addFirstFilter": "Add your first filter condition",
+    "noFiltersApplied": "No filters applied",
+    "filtersApplied": "{count} filter(s) applied",
+    "selectColumn": "Select Column",
+    "searchColumns": "Search columns...",
+    "operator": "Operator",
+    "value": "Value",
+    "cancel": "Cancel",
+    "add": "Add",
+    "save": "Save",
+    "enterValue": "Enter value...",
+    "useRelativeDate": "Use relative date",
+    "start": "Start",
+    "to": "to",
+    "end": "End",
+    "enterValuesSeparatedByCommas": "Enter values separated by commas",
+    "relativeDates": {
+      "today": "Today",
+      "yesterday": "Yesterday",
+      "tomorrow": "Tomorrow",
+      "thisWeek": "This Week",
+      "lastWeek": "Last Week",
+      "nextWeek": "Next Week",
+      "thisMonth": "This Month",
+      "lastMonth": "Last Month",
+      "nextMonth": "Next Month",
+      "last7Days": "Last 7 Days",
+      "next7Days": "Next 7 Days",
+      "last30Days": "Last 30 Days",
+      "next30Days": "Next 30 Days",
+      "thisYear": "This Year",
+      "lastYear": "Last Year",
+      "custom": "Custom Range"
+    }
+  },
+  "widgetConfig": {
+    "advancedPanel": {
+      "tabs": {
+        "basic": "Basic",
+        "display": "Display",
+        "query": "Query",
+        "filters": "Advanced Filters"
+      },
+      "placeholders": {
+        "selectSchema": "Select schema",
+        "selectTable": "Select table"
+      },
+      "summary": {
+        "configurationSummary": "Configuration Summary",
+        "dataSource": "Data Source",
+        "chartType": "Chart Type",
+        "notSelected": "Not selected",
+        "xAxis": "X-Axis",
+        "yAxis": "Y-Axis",
+        "filters": "Filters",
+        "active": "active",
+        "metric": "Metric",
+        "calculation": "Calculation",
+        "columns": "Columns",
+        "selected": "selected"
+      }
+    },
+    "appearance": "Appearance",
+    "behavior": "Behavior",
+    "dataProcessing": "Data Processing",
+    "chart": {
+      "chartType": "Chart Type",
+      "xAxisLabel": "X-Axis Label",
+      "yAxisLabel": "Y-Axis Label",
+      "showGridLines": "Show Grid Lines",
+      "showDataLabels": "Show Data Labels",
+      "enableZoom": "Enable Zoom",
+      "enableAnimation": "Enable Animation",
+      "stackedBars": "Stacked Bars",
+      "curveType": "Curve Type",
+      "fillArea": "Fill Area",
+      "xAxisLabelPlaceholder": "e.g., Month, Category",
+      "yAxisLabelPlaceholder": "e.g., Sales, Count",
+      "curveLinear": "Linear",
+      "curveSmooth": "Smooth",
+      "curveStep": "Step"
+    },
+    "metric": {
+      "comparisonPeriod": "Comparison Period",
+      "targetValue": "Target Value",
+      "thresholds": "Thresholds",
+      "lowThreshold": "Low Threshold",
+      "highThreshold": "High Threshold",
+      "lowColor": "Low Value Color",
+      "normalColor": "Normal Value Color",
+      "highColor": "High Value Color",
+      "showProgress": "Show Progress Bar",
+      "showTrendArrow": "Show Trend Arrow",
+      "trendPeriod": "Trend Calculation Period",
+      "formatNumber": "Number",
+      "formatCurrency": "Currency",
+      "formatPercentage": "Percentage",
+      "formatDecimal": "Decimal",
+      "noComparison": "No Comparison",
+      "previousPeriod": "Previous Period",
+      "lastWeek": "Last Week",
+      "lastMonth": "Last Month",
+      "lastYear": "Last Year",
+      "period1Day": "1 Day",
+      "period7Days": "7 Days",
+      "period30Days": "30 Days",
+      "period90Days": "90 Days",
+      "period365Days": "1 Year",
+      "targetValuePlaceholder": "e.g., 1000",
+      "lowThresholdPlaceholder": "e.g., 500",
+      "highThresholdPlaceholder": "e.g., 1500"
+    },
+    "table": {
+      "columnWidth": "Column Width",
+      "sortable": "Sortable Columns",
+      "searchable": "Enable Search",
+      "exportable": "Enable Export",
+      "zebra": "Zebra Striping",
+      "compact": "Compact View",
+      "wrapText": "Wrap Text",
+      "fixedHeader": "Fixed Header",
+      "pageSize": "Page Size",
+      "showSearch": "Show search box",
+      "showPagination": "Show pagination",
+      "rowsPerPage": "Rows per page"
+    },
+    "advanced": {
+      "noConfig": "No advanced configuration available for this widget type.",
+      "formatNumber": "Number",
+      "formatCurrency": "Currency",
+      "formatPercentage": "Percentage",
+      "formatDecimal": "Decimal",
+      "noComparison": "No Comparison",
+      "previousPeriod": "Previous Period",
+      "lastWeek": "Last Week",
+      "lastMonth": "Last Month",
+      "lastYear": "Last Year",
+      "period1Day": "Last 1 Day",
+      "period7Days": "Last 7 Days",
+      "period30Days": "Last 30 Days",
+      "period90Days": "Last 90 Days"
+    },
+    "validation": {
+      "widgetNameRequired": "Widget name is required",
+      "widgetTypeRequired": "Widget type is required",
+      "schemaRequired": "Schema is required",
+      "tableRequired": "Table is required",
+      "titleRequired": "Title is required"
+    }
+  },
+  "navigation": {
+    "dashboardTabs": "Dashboard Navigation",
+    "switchDashboard": "Switch Dashboard",
+    "viewAll": "View All",
+    "createNew": "Create New Dashboard"
+  },
+  "widgets": {
+    "widgetPositionsUpdated": "Widget positions updated successfully",
+    "positionUpdateFailed": "Failed to update widget positions",
+    "widgetCreated": "Widget created successfully",
+    "createFailed": "Failed to create widget",
+    "widgetUpdated": "Widget updated successfully",
+    "updateFailed": "Failed to update widget",
+    "widgetDeleted": "Widget deleted successfully",
+    "deleteFailed": "Failed to delete widget",
+    "placeholders": {
+      "selectSchema": "Select schema",
+      "selectTable": "Select table",
+      "notSelected": "Not selected",
+      "configurationSummary": "Configuration Summary",
+      "dataSource": "Data Source",
+      "chartType": "Chart Type",
+      "xAxis": "X-Axis",
+      "yAxis": "Y-Axis",
+      "filters": "Filters",
+      "active": "active"
+    },
+    "chart": {
+      "noData": "No data available",
+      "configureToDisplay": "Configure the widget to display data",
+      "unsupportedType": "Unsupported chart type: {{chartType}}",
+      "widgetType": "Chart Widget",
+      "labels": {
+        "value": "Value",
+        "totalCount": "Total count",
+        "countOf": "Count of {{column}}",
+        "aggregationOf": "{{aggregation}} of {{column}}",
+        "aggregationValue": "{{aggregation}} value",
+        "sum": "Sum",
+        "avg": "Average",
+        "min": "Minimum",
+        "max": "Maximum",
+        "count": "Count"
+      },
+      "tooltips": {
+        "value": "Value",
+        "totalCount": "The total count",
+        "countOf": "The count of {{column}}",
+        "aggregationOf": "{{aggregation}} of {{column}}",
+        "aggregationValue": "{{aggregation}} value",
+        "sum": "The sum",
+        "avg": "The average",
+        "min": "The minimum",
+        "max": "The maximum",
+        "count": "The count"
+      },
+      "config": {
+        "title": "Chart Data Configuration",
+        "advancedOptions": "Advanced Options",
+        "subtitle": "Configure how your data will be visualized in the chart",
+        "formatting": {
+          "title": "Number Formatting",
+          "description": "Choose how numbers should be displayed on your chart",
+          "yAxisNumbers": "Y-Axis Numbers",
+          "yAxisDescription": "Format the values displayed on the left side of your chart",
+          "defaultFormat": "Default number format"
+        },
+        "chartType": "Chart Type",
+        "selectChartType": "Select chart type",
+        "xAxis": "X-Axis (Categories/Time)",
+        "yAxis": "Y-Axis (Values)",
+        "selectXAxis": "Select X-axis column",
+        "selectYAxis": "Select Y-axis column",
+        "pieChartConfig": "Pie Chart Configuration",
+        "categoryColumn": "Category Column",
+        "selectCategoryColumn": "Select category column",
+        "valueColumn": "Value Column",
+        "selectValueColumn": "Select value column",
+        "dataAggregation": "Data Aggregation",
+        "aggregationMethod": "Aggregation Method",
+        "selectAggregationMethod": "Select aggregation method",
+        "groupingOptional": "Grouping (Optional)",
+        "groupByColumn": "Group By Column",
+        "selectGroupingColumn": "Select grouping column (optional)",
+        "noGrouping": "No grouping",
+        "axisConfiguration": "Axis Configuration",
+        "xAxisDescription": "The column to display on the X-axis of the chart",
+        "yAxisDescription": "The column to display on the Y-axis of the chart",
+        "aggregationMethodDescription": "The method to aggregate the data",
+        "groupingOptionalDescription": "The column to group the data by",
+        "timeAggregation": "Time Aggregation",
+        "timeAggregationPeriod": "Time Aggregation Period",
+        "selectTimeAggregation": "Select time aggregation period",
+        "timeAggregationDescription": "How to group time-based data for visualization",
+        "multiSeries": "Multi-Series Configuration",
+        "enableMultiSeries": "Enable Multi-Series",
+        "multiSeriesDescription": "Display multiple data series on the same chart",
+        "seriesType": "Series Type",
+        "selectSeriesType": "Select series type",
+        "seriesTypeDescription": "How multiple series should be displayed",
+        "seriesGroupColumns": "Series Group Columns",
+        "seriesGroupColumnsDescription": "Select columns to create separate series",
+        "addSeriesGroupColumn": "Add series group column",
+        "maxSeries": "Max Series",
+        "maxSeriesDescription": "Maximum number of series to display (1-20)",
+        "recordCount": "Record Count",
+        "countRecordsPerGroup": "Count records per group",
+        "noNumericColumnsAvailable": "No numeric columns available",
+        "goodForCategories": "Group by categories",
+        "goodForTimeSeries": "Perfect for time-based charts",
+        "warnings": {
+          "noNumericColumns": "This table has no numeric columns. You can still create charts using 'Record Count' as the Y-axis to count records per category or time period."
+        },
+        "whatStoryTitle": "What story do you want to tell?",
+        "whatStorySubtitle": "Choose the best way to visualize your data story",
+        "selectVisualization": "Select how you want to show your data",
+        "whatDataTitle": "What data do you want to show?",
+        "whatDataSubtitle": "Choose categories to compare and values to measure",
+        "chooseCategoriesOrTime": "Choose categories or time periods",
+        "chartTypes": {
+          "bar": {
+            "label": "Compare values (Bar chart)",
+            "description": "Best for comparing categories side-by-side",
+            "examples": "e.g., Sales by region, products by rating, users by plan"
+          },
+          "line": {
+            "label": "Show trends over time (Line chart)",
+            "description": "Perfect for tracking changes and patterns",
+            "examples": "e.g., Revenue growth, user signups over months, website traffic"
+          },
+          "area": {
+            "label": "Show cumulative totals (Area chart)",
+            "description": "Great for showing accumulation or composition",
+            "examples": "e.g., Total revenue over time, stacked user types, budget vs spending"
+          }
+        },
+        "whatToCompare": "What do you want to compare?",
+        "compareAcrossTime": "Compare across time periods",
+        "compareDifferentCategories": "Compare different categories",
+        "chooseTimeColumn": "Choose a time column",
+        "requiresDateColumn": "This chart type requires a date/time column",
+        "shownAtBottom": "This will be shown along the bottom of your chart",
+        "whatToMeasure": "What do you want to measure?",
+        "chooseWhatToCount": "Choose what to count or calculate",
+        "countOfRecords": "Count of records",
+        "howManyItems": "How many items in each category?",
+        "valuesFromField": "Values from this numeric field",
+        "shownOnLeft": "This will be shown on the left side of your chart",
+        "howToCalculateTitle": "How should we calculate the chart values?",
+        "howToCalculateSubtitle": "Since you selected \"{{yAxis}}\", how should we turn that into chart numbers?",
+        "howToCalculate": "How to calculate",
+        "selectCalculation": "Choose calculation method",
+        "calculations": {
+          "count": {
+            "label": "Count how many",
+            "description": "Count the number of records in each category"
+          },
+          "sum": {
+            "label": "Add them up",
+            "description": "Add up all the values to get a total"
+          },
+          "avg": {
+            "label": "Find the average",
+            "description": "Calculate the average value across records"
+          },
+          "min": {
+            "label": "Find the smallest",
+            "description": "Show the minimum value in each group"
+          },
+          "max": {
+            "label": "Find the largest",
+            "description": "Show the maximum value in each group"
+          }
+        },
+        "calculationHint": "This determines how your data gets turned into chart values",
+        "countOnlyForAllRecords": "Only \"Count\" works when measuring all records. Select a specific column above for more options.",
+        "splitDataBy": "Split the data by? (Optional)",
+        "chooseSplit": "Choose how to split your data",
+        "noSplit": "Don't split",
+        "showOverallTotals": "Show one total for everything",
+        "separateBarsByCategory": "Show separate bars for each category",
+        "splitHint": "Split your data to see breakdowns by different categories",
+        "advancedComparisons": "Advanced Comparisons (Optional)",
+        "enableAdvancedComparisons": "Enable advanced comparisons",
+        "advancedComparisonsHint": "Compare multiple data series side-by-side or stacked",
+        "useAdvancedComparisons": "Use advanced comparisons",
+        "displayStyle": "Display style",
+        "chooseStyle": "Choose display style",
+        "sideBySide": "Side by side",
+        "sideBySideHint": "Show bars next to each other for easy comparison",
+        "stacked": "Stacked",
+        "stackedHint": "Stack bars on top of each other to show totals",
+        "thisWillShow": "This will show",
+        "visualStyle": "Visual style",
+        "preview": {
+          "barCount": "Bar chart showing how many records exist for each {{xLabel}}",
+          "barValue": "Bar chart comparing {{calc}} {{yLabel}} across different {{xLabel}}",
+          "lineCount": "Line chart tracking record count over time by {{xLabel}}",
+          "lineValue": "Line chart showing {{calc}} {{yLabel}} trends over {{xLabel}}",
+          "areaCount": "Area chart displaying cumulative record count by {{xLabel}}",
+          "areaValue": "Area chart showing {{calc}} {{yLabel}} accumulation across {{xLabel}}",
+          "default": "Chart displaying {{yLabel}} by {{xLabel}}",
+          "withSeries": "with separate series for each {{groupLabel}}",
+          "total": "total",
+          "average": "average",
+          "minimum": "minimum",
+          "maximum": "maximum",
+          "barStyle": "Vertical bars of different heights",
+          "lineStyle": "Connected points showing trends",
+          "areaStyle": "Filled area under the trend line",
+          "defaultStyle": "Visual representation of your data"
+        }
+      }
+    },
+    "metric": {
+      "of": "of",
+      "widgetType": "Metric Widget",
+      "configureToDisplay": "Configure the widget to display data",
+      "previous": "Previous",
+      "vs": "vs",
+      "yesterday": "yesterday",
+      "lastWeek": "last week",
+      "lastMonth": "last month",
+      "lastDays": "last {{days}} days",
+      "previousPeriod": "previous period",
+      "config": {
+        "title": "Metric Data Configuration",
+        "subtitle": "Configure the metric calculation and trend analysis",
+        "formatting": {
+          "title": "Number Display",
+          "question": "How should this number be displayed?",
+          "description": "Choose how to format the number for better readability",
+          "placeholder": "Select number format..."
+        },
+        "explanation": "Metric widgets display a single number (KPI) calculated from your data - like totals, averages, or counts.",
+        "examplesTitle": "Examples: \"Total Users: 1,247\" • \"Average Order Value: $85.50\" • \"New Sign-ups This Month: 342\"",
+        "metricSource": "Metric Source",
+        "metricColumn": "Metric Column",
+        "selectMetricColumn": "Select column to calculate metric from",
+        "allRecords": "All Records (*)",
+        "countAllRecords": "Count all records",
+        "calculationMethod": "Calculation Method",
+        "aggregationMethod": "Aggregation Method",
+        "selectCalculationMethod": "Select calculation method",
+        "groupingOptional": "Grouping (Optional)",
+        "groupByColumn": "Group By Column",
+        "selectGroupingColumn": "Select grouping column (optional)",
+        "noGrouping": "No grouping",
+        "showSingleValue": "Show a single aggregated value",
+        "groupingHint": "Break down your metric by categories or time periods to see distribution patterns",
+        "goodForTimeSeries": "Good for time series",
+        "goodForBreakdown": "Break down by categories",
+        "simpleMetric": "Show current value only",
+        "showChangeOverTime": "Shows percentage change from past",
+        "trendAnalysisOptional": "Trend Analysis (Optional)",
+        "trendPeriod": "Trend Period",
+        "trendAnalysisHint": "Compare current values with past periods to show growth or decline",
+        "selectTrendPeriod": "Select trend period",
+        "noTrendAnalysis": "No trend analysis",
+        "compareTo7DaysAgo": "Compare to 7 days ago",
+        "compareTo30DaysAgo": "Compare to 30 days ago",
+        "compareTo90DaysAgo": "Compare to 90 days ago",
+        "compareTo1YearAgo": "Compare to 1 year ago",
+        "vsDaysAgo": "vs {{count}}d ago",
+        "trendDateColumn": "Date Field for Trend Analysis",
+        "trendDateColumnHint": "Select which date/timestamp field to use for calculating trends over time",
+        "selectDateColumn": "Select a date column...",
+        "noDateColumns": "No date columns found in this table",
+        "noDateColumnsWarning": "This table has no date/timestamp columns. Trend analysis requires a date field to compare time periods.",
+        "trendComparison": "Trend Comparison",
+        "trendComparisonHint": "Compare current period with previous period to show trends",
+        "trendComparisonDescription": "Add date filters below to enable automatic trend calculations",
+        "enableTrendComparison": "Enable trend comparison",
+        "trendRequiresDateFilter": "Date filter will be required in the next step",
+        "trendInstructions": "In the next step, add a date filter to enable trend comparison. The system will automatically calculate periods based on your filter.",
+        "trendDirection": "Trend Direction",
+        "trendDirectionDescription": "Choose whether higher or lower values indicate better performance",
+        "higherIsBetter": "Higher is better",
+        "lowerIsBetter": "Lower is better",
+        "dateFilterRequired": "Date Filter Required",
+        "dateFilterRequiredDescription": "Add a date filter to define the time period for trend comparison calculations",
+        "noDateColumnsAvailable": "No date columns are available in this table for filtering",
+        "trendColumnSelected": "This column will be used for trend analysis calculations",
+        "changeTrendColumn": "Change column",
+        "validation": {
+          "columnRequired": "Column is required for aggregations other than count",
+          "dateFilterRequired": "Date filter is required when trend comparison is enabled"
+        },
+        "metricSourceHint": "Choose what to measure. Start with \"All Records\" for simple counts.",
+        "recommended": "Recommended",
+        "notRecommended": "Not recommended",
+        "countOnlyForAllRecords": "Only count is available when using \"All Records\"",
+        "howToCalculateNumeric": "How to calculate this numeric value",
+        "onlyCountForText": "Only count is available for text fields",
+        "fieldTypes": {
+          "ordering": "Ordering field",
+          "orderingWarning": "Usually not summed",
+          "id": "ID field",
+          "idWarning": "Only count is meaningful",
+          "value": "Value field",
+          "valueSuggestion": "Good for sum/avg",
+          "dateTime": "Date/Time",
+          "dateTimeSuggestion": "Good for trends",
+          "boolean": "Yes/No field",
+          "booleanWarning": "Only count is meaningful",
+          "numeric": "Numeric field",
+          "text": "Text field",
+          "textWarning": "Only count available"
+        },
+        "warnings": {
+          "orderingField": "Ordering field detected: Summing position values (1+2+3...) rarely provides meaningful insights. Consider using \"Count\" instead to see how many records exist.",
+          "idField": "ID field detected: Mathematical operations on IDs are not meaningful. Use \"Count\" to see how many records exist."
+        },
+        "thisWillShow": "This will show",
+        "example": "Example",
+        "descriptions": {
+          "count": "Total number of records",
+          "sum": "Total {{columnName}} (all values added up)",
+          "avg": "Average {{columnName}} per record",
+          "min": "Lowest {{columnName}} value",
+          "max": "Highest {{columnName}} value",
+          "generic": "{{aggregation}} of {{columnName}}"
+        },
+        "trendSuffix": " (compared to {{days}} days ago)",
+        "examples": {
+          "count": "e.g., 1,247 total records",
+          "sum": "e.g., $45,678 total revenue",
+          "avg": "e.g., 85.4 average rating",
+          "minmax": "e.g., 42 lowest/highest value",
+          "calculated": "Calculated metric value"
+        }
+      }
+    },
+    "table": {
+      "config": {
+        "optional": "(Optional)",
+        "title": "Table Data Configuration",
+        "subtitle": "Configure which columns to display and table behavior",
+        "columnSelection": "Column Selection",
+        "selectedColumns": "Selected Columns",
+        "availableColumns": "Available Columns",
+        "sortingOptional": "Sorting (Optional)",
+        "sortByColumn": "Sort By Column",
+        "selectColumnToSortBy": "Select column to sort by",
+        "noSorting": "No sorting",
+        "sortDirection": "Sort Direction",
+        "ascending": "Ascending (A-Z, 1-9)",
+        "descending": "Descending (Z-A, 9-1)",
+        "tableFeatures": "Table Features",
+        "showSearchBox": "Show search box",
+        "showPagination": "Show pagination",
+        "rowsPerPage": "Rows per page",
+        "selectPageSize": "Select page size",
+        "configurationSummary": "Configuration Summary",
+        "columns": "Columns",
+        "selected": "selected",
+        "sort": "Sort",
+        "features": "Features",
+        "search": "Search",
+        "pagination": "Pagination",
+        "rowsPerPageText": "{{count}} rows/page",
+        "noData": "No data available",
+        "configureToDisplay": "Configure to display data",
+        "widgetType": "Table Widget",
+        "showing": "Showing",
+        "to": "to",
+        "of": "of",
+        "results": "results",
+        "page": "Page",
+        "previous": "Previous",
+        "next": "Next",
+        "enterSearchTerm": "Search...",
+        "yes": "Yes",
+        "no": "No",
+        "column": "Column",
+        "allColumnsSelected": "All columns will be displayed",
+        "selectSpecificColumns": "Click on columns below to show only specific ones"
+      }
+    },
+    "configPanel": {
+      "placeholders": {
+        "enterColumnName": "Enter column name",
+        "selectAggregation": "Select aggregation",
+        "newWidget": "New {{widgetType}} Widget"
+      },
+      "aggregationOptions": {
+        "count": "Count",
+        "sum": "Sum",
+        "avg": "Average",
+        "min": "Minimum",
+        "max": "Maximum"
+      }
+    }
+  },
+  "widgetContainer": {
+    "loading": "Loading...",
+    "failedToLoad": "Failed to load widget data",
+    "unknownWidgetType": "Unknown widget type: {{widgetType}}",
+    "refreshData": "Refresh Data",
+    "viewFullscreen": "View Fullscreen",
+    "editWidget": "Edit Widget",
+    "duplicate": "Duplicate",
+    "deleteWidget": "Delete Widget",
+    "confirmDeleteWidget": "Are you sure you want to delete this widget? This action cannot be undone.",
+    "updated": "Updated",
+    "justNow": "just now",
+    "minutesAgo": "{{count}}m ago",
+    "hoursAgo": "{{count}}h ago",
+    "daysAgo": "{{count}}d ago"
+  }
+}

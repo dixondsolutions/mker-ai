@@ -1,0 +1,45 @@
+{
+  "name": "@kit/permissions",
+  "private": true,
+  "version": "0.1.0",
+  "exports": {
+    ".": "./index.ts",
+    "./services": "./src/services/index.ts",
+    "./routes": "./src/routes/index.ts",
+    "./hooks": "./src/hooks/index.ts",
+    "./loaders": "./src/loaders/index.ts",
+    "./utils": "./src/utils/index.ts"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "src/*"
+      ]
+    }
+  },
+  "scripts": {
+    "clean": "rm -rf .turbo node_modules",
+    "lint": "eslint .",
+    "format": "prettier --check \"**/*.{mjs,ts,md,json}\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@hono/zod-validator": "catalog:",
+    "@kit/api": "workspace:*",
+    "@kit/auth": "workspace:*",
+    "@kit/eslint-config": "workspace:*",
+    "@kit/prettier-config": "workspace:*",
+    "@kit/shared": "workspace:*",
+    "@kit/supabase": "workspace:*",
+    "@kit/typescript-config": "workspace:*",
+    "@supabase/supabase-js": "catalog:",
+    "@tanstack/react-query": "catalog:",
+    "@types/react": "catalog:",
+    "drizzle-orm": "catalog:",
+    "hono": "catalog:",
+    "react": "catalog:",
+    "react-router": "catalog:",
+    "zod": "catalog:"
+  },
+  "prettier": "@kit/prettier-config"
+}

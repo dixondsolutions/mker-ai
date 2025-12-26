@@ -1,0 +1,41 @@
+services:
+  # Production frontend with nginx proxy
+  web:
+    build:
+      context: .
+      target: app-runner
+      args:
+        VITE_SUPABASE_URL: ${VITE_SUPABASE_URL}
+        VITE_SUPABASE_ANON_KEY: ${VITE_SUPABASE_ANON_KEY}
+        VITE_SITE_URL: ${VITE_SITE_URL}
+        VITE_OAUTH_PROVIDERS: ${VITE_OAUTH_PROVIDERS}
+        VITE_ENABLE_VERSION_CHECK: ${VITE_ENABLE_VERSION_CHECK}
+    ports:
+      - "8080:80"
+    env_file:
+      - apps/app/.env.production
+    depends_on:
+      - api
+    networks:
+      - supamode-network
+
+  # Production API server
+  api:
+    build:
+      context: .
+      target: api-runner
+    ports:
+      - "3000:3000"
+    env_file:
+      - apps/api/.env.production
+    networks:
+      - supamode-network
+
+networks:
+  supamode-network:
+    driver: bridge
+
+volumes:
+  node_modules:
+  web_node_modules:
+  api_node_modules:

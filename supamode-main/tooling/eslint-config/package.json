@@ -1,0 +1,27 @@
+{
+  "name": "@kit/eslint-config",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "files": [
+    "./apps.js",
+    "./base.js",
+    "./react.js"
+  ],
+  "scripts": {
+    "clean": "rm -rf .turbo node_modules",
+    "format": "prettier --check \"**/*.{js,json}\""
+  },
+  "dependencies": {
+    "@types/eslint": "catalog:",
+    "eslint-config-turbo": "catalog:",
+    "eslint-plugin-react": "catalog:",
+    "eslint-plugin-react-hooks": "catalog:",
+    "typescript-eslint": "catalog:"
+  },
+  "devDependencies": {
+    "@kit/prettier-config": "0.1.0",
+    "eslint": "catalog:"
+  },
+  "prettier": "@kit/prettier-config"
+}

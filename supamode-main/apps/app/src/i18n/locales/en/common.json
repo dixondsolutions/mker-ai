@@ -1,0 +1,308 @@
+{
+  "back": "Back",
+  "cancel": "Cancel",
+  "close": "Close",
+  "edit": "Edit",
+  "save": "Save",
+  "search": "Search",
+  "email": "Email",
+  "previous": "Previous",
+  "next": "Next",
+  "retry": "Retry",
+  "reset": "Reset",
+  "reload": "Reload Page",
+  "resources": "Resources",
+  "noData": "No results found",
+  "emailAddress": "Email address",
+  "password": "Password",
+  "name": "Name",
+  "action": "Action",
+  "settings": "Settings",
+  "description": "Description",
+  "filters": "Filters",
+  "adminUser": "Admin User",
+  "user": "User",
+  "loading": "Loading...",
+  "saveChanges": "Save Changes",
+  "saving": "Saving...",
+  "delete": "Delete",
+  "deleteResource": "Delete",
+  "deleteItems": "Delete {{count}} item(s)",
+  "deleting": "Deleting...",
+  "all": "All",
+  "create": "Create",
+  "creating": "Creating...",
+  "new": "New",
+  "tab": "Tab",
+  "pageOfPages": "{{page}} of {{total}}",
+  "promptUnsavedChanges": "You have unsaved changes. Are you sure you want to leave this page?",
+  "unsavedChanges": "Unsaved changes",
+  "errors": {
+    "generic": "Oops! Something went wrong.",
+    "unknown": "An unknown error occurred.",
+    "reload": "Reload Page"
+  },
+  "routes": {
+    "dashboards": "Dashboards",
+    "settings": "Settings",
+    "auditLogs": "Audit Logs",
+    "users": "Users",
+    "assets": "Assets"
+  },
+  "theme": "Theme",
+  "lightTheme": "Light",
+  "darkTheme": "Dark",
+  "systemTheme": "System",
+  "signedInAs": "Signed in as",
+  "clear": "Clear",
+  "batchEdit": "Batch Edit",
+  "selectedItemsToModify": "Modifying {{count}} item(s)",
+  "andXMore": "... and {{count}} more",
+  "dropzone": {
+    "success": "Successfully uploaded {{count}} file(s)",
+    "error": "Error uploading {{count}} file(s)",
+    "errorMessage": "Error uploading file(s)",
+    "errorMessageUnknown": "An unknown error occurred.",
+    "errorMessageFileUnknown": "Unknown file",
+    "errorMessageFileSizeUnknown": "Unknown file size",
+    "errorMessageFileSizeTooSmall": "File size is too small",
+    "errorMessageFileSizeTooLarge": "File size is too large",
+    "uploading": "Uploading...",
+    "errorMaxFiles": "You may upload only up to {{count}} files, please remove {{files}} files.",
+    "uploadFiles": "Upload {{count}} file(s)",
+    "maxFileSize": "Maximum file size: {{size}}",
+    "maxFiles": "You may upload only up to {{count}} files, please remove {{files}} files.",
+    "dragAndDrop": "Drag and drop or",
+    "select": "select files",
+    "toUpload": "to upload"
+  },
+  "newVersionAvailable": "New Version Available",
+  "newVersionAvailableDescription": "A new version of Supamode is available. Please update your repository and re-deploy the application to get the latest features and improvements.",
+  "newVersionSubmitButton": "Refresh Page",
+  "clientServerOutOfSync": "Client/Server Out of Sync",
+  "clientServerOutOfSyncDescription": "Your client and server are running different versions. Please refresh the page to sync with the server.",
+  "refreshPage": "Refresh Page",
+  "public": "Public",
+  "size": "Size",
+  "type": "Type",
+  "modified": "Modified",
+  "documentation": "Documentation",
+  "openBugReport": "Open Bug Report",
+  "formatters": {
+    "categories": {
+      "number": "Numbers",
+      "date": "Dates & Times",
+      "text": "Text",
+      "custom": "Custom",
+      "other": "Other"
+    },
+    "types": {
+      "number": {
+        "label": "Number",
+        "description": "Format numbers with commas and decimals",
+        "example": "1,234.56"
+      },
+      "currency": {
+        "label": "Currency",
+        "description": "Format as money with currency symbol",
+        "example": "$1,234.56"
+      },
+      "percentage": {
+        "label": "Percentage",
+        "description": "Display as percentage with % symbol",
+        "example": "45.6%"
+      },
+      "compact": {
+        "label": "Compact",
+        "description": "Shorten large numbers with K, M, B",
+        "example": "1.2K"
+      },
+      "bytes": {
+        "label": "File Size",
+        "description": "Format as file size with units",
+        "example": "1.5 MB"
+      },
+      "duration": {
+        "label": "Duration",
+        "description": "Format time duration",
+        "example": "2h 30m"
+      },
+      "date": {
+        "label": "Date",
+        "description": "Format as readable date",
+        "example": "Jan 15, 2024"
+      },
+      "datetime": {
+        "label": "Date & Time",
+        "description": "Format date with time",
+        "example": "Jan 15, 2024 3:30 PM"
+      },
+      "time": {
+        "label": "Time",
+        "description": "Format time only",
+        "example": "3:30 PM"
+      },
+      "relative": {
+        "label": "Relative",
+        "description": "Show time relative to now",
+        "example": "2 days ago"
+      },
+      "text": {
+        "label": "Text",
+        "description": "Display as plain text",
+        "example": "Sample text"
+      },
+      "email": {
+        "label": "Email",
+        "description": "Format and validate email addresses",
+        "example": "user@example.com"
+      },
+      "url": {
+        "label": "URL",
+        "description": "Format as clickable link",
+        "example": "example.com"
+      },
+      "phone": {
+        "label": "Phone",
+        "description": "Format phone numbers",
+        "example": "(555) 123-4567"
+      },
+      "boolean": {
+        "label": "Yes/No",
+        "description": "Display as Yes or No",
+        "example": "Yes"
+      },
+      "status": {
+        "label": "Status",
+        "description": "Format as status badge or text",
+        "example": "✓ Active"
+      }
+    },
+    "config": {
+      "title": "Formatter Configuration",
+      "description": "Configure how this formatter should work",
+      "noConfiguration": "This formatter has no configuration options",
+      "configure": "Configure {{formatterType}} format",
+      "duration": {
+        "title": "Duration Format Configuration",
+        "inputUnit": {
+          "label": "Input Value Unit",
+          "description": "What unit is your data stored in?",
+          "milliseconds": "Milliseconds (1000 = 1 second)",
+          "seconds": "Seconds (60 = 1 minute)",
+          "minutes": "Minutes (60 = 1 hour)",
+          "hours": "Hours (24 = 1 day)"
+        },
+        "displayUnits": {
+          "label": "Display Units",
+          "description": "Which time units should be shown? (Select multiple)",
+          "days": "Days",
+          "hours": "Hours",
+          "minutes": "Minutes",
+          "seconds": "Seconds",
+          "milliseconds": "Milliseconds"
+        },
+        "format": {
+          "label": "Format Style",
+          "short": {
+            "label": "Short Format",
+            "description": "Compact abbreviations like 2h 30m 15s",
+            "example": "2h 30m 15s"
+          },
+          "long": {
+            "label": "Long Format",
+            "description": "Full words like 2 hours 30 minutes 15 seconds",
+            "example": "2 hours 30 minutes 15 seconds"
+          }
+        },
+        "separator": {
+          "label": "Separator",
+          "description": "Text to place between time units",
+          "placeholder": "Space"
+        }
+      },
+      "status": {
+        "title": "Status Format Configuration",
+        "displayFormat": {
+          "label": "Display Format",
+          "badge": "Badge Style",
+          "text": "Plain Text",
+          "icon": "Icon Only"
+        },
+        "statusMappings": {
+          "label": "Status Mappings",
+          "description": "Define how different status values should be displayed",
+          "addMapping": "Add Status Mapping",
+          "value": "Status Value",
+          "display": "Display Text",
+          "color": "Color",
+          "icon": "Icon (optional)",
+          "placeholder": {
+            "value": "e.g., active, pending",
+            "display": "e.g., Active, Pending",
+            "icon": "e.g., ✓, ⏳"
+          },
+          "colors": {
+            "default": "Default",
+            "success": "Success (Green)",
+            "warning": "Warning (Yellow)",
+            "error": "Error (Red)",
+            "info": "Info (Blue)"
+          }
+        }
+      },
+      "number": {
+        "title": "Number Format Configuration",
+        "decimals": {
+          "label": "Decimal Places",
+          "description": "Number of decimal places to show"
+        },
+        "currency": {
+          "label": "Currency",
+          "description": "Currency symbol to use"
+        },
+        "useGrouping": {
+          "label": "Use thousand separators (1,000 vs 1000)"
+        }
+      },
+      "currency": {
+        "title": "Currency Format Configuration"
+      },
+      "percentage": {
+        "title": "Percentage Format Configuration"
+      }
+    },
+    "preview": {
+      "title": "Live Preview",
+      "sampleInput": "Sample input:",
+      "formattedOutput": "Formatted output:",
+      "selectFormatter": "Select a formatter to see preview",
+      "errorFormatting": "Error formatting value"
+    },
+    "selection": {
+      "placeholder": "Select formatter...",
+      "recommendedFor": "Recommended for {{dataType}} data"
+    }
+  },
+  "duration": {
+    "units": {
+      "day": "day",
+      "days": "days",
+      "hour": "hour",
+      "hours": "hours",
+      "minute": "minute",
+      "minutes": "minutes",
+      "second": "second",
+      "seconds": "seconds",
+      "millisecond": "millisecond",
+      "milliseconds": "milliseconds"
+    },
+    "short": {
+      "day": "d",
+      "hour": "h",
+      "minute": "m",
+      "second": "s",
+      "millisecond": "ms"
+    }
+  }
+}

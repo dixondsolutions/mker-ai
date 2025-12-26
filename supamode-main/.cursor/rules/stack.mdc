@@ -1,0 +1,12 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+Supamode is an application similar to Laravel Nova, a sort of god mode for any Supabase application.
+
+The tech stack includes:
+- SPA with React Router 7, Shadcn UI and Tailwind CSS v4 at apps/app
+- API using Hono at apps/api
+- Supabase client using Drizzle [drizzle-client.ts](mdc:packages/supabase/src/clients/drizzle-client.ts) "@kit/database/client"
+- Zod

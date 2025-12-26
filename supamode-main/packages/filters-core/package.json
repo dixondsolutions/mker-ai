@@ -1,0 +1,35 @@
+{
+  "name": "@kit/filters-core",
+  "private": true,
+  "version": "0.1.0",
+  "exports": {
+    ".": "./index.ts"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "src/*"
+      ]
+    }
+  },
+  "scripts": {
+    "clean": "rm -rf .turbo node_modules",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --check \"**/*.{mjs,ts,md,json}\"",
+    "typecheck": "tsc --noEmit",
+    "test:watch": "vitest",
+    "test": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "@date-fns/tz": "catalog:",
+    "@kit/eslint-config": "workspace:*",
+    "@kit/prettier-config": "workspace:*",
+    "@kit/types": "workspace:*",
+    "@kit/typescript-config": "0.1.0",
+    "@vitest/coverage-v8": "catalog:",
+    "date-fns": "catalog:",
+    "vitest": "catalog:"
+  },
+  "prettier": "@kit/prettier-config"
+}

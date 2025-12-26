@@ -1,0 +1,344 @@
+# Docker Compose for ChatBots + Supamode + Self-Hosted Supabase
+# Complete deployment stack
+
+x-supabase-common: &supabase-common
+  restart: unless-stopped
+  networks:
+    - supabase-internal
+
+services:
+  # ==============================================================================
+  # SUPABASE SERVICES
+  # ==============================================================================
+
+  # PostgreSQL Database
+  db:
+    image: supabase/postgres:15.6.1.142
+    <<: *supabase-common
+    command:
+      - postgres
+      - -c
+      - config_file=/etc/postgresql/postgresql.conf
+      - -c
+      - log_min_messages=fatal
+    healthcheck:
+      test: pg_isready -U postgres -h localhost
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - supabase-db-data:/var/lib/postgresql/data
+      - ./docker/init-db.sql:/docker-entrypoint-initdb.d/99-init.sql:ro
+    environment:
+      POSTGRES_HOST: /var/run/postgresql
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: postgres
+    ports:
+      - "${POSTGRES_PORT:-54322}:5432"
+
+  # NOTE: Analytics (logflare) and Vector are optional and disabled by default
+  # They require additional database setup. Uncomment if needed.
+  # analytics:
+  #   image: supabase/logflare:1.4.0
+  #   ...
+
+  # vector:
+  #   image: timberio/vector:0.28.1-alpine
+  #   ...
+
+  # Kong API Gateway
+  kong:
+    image: kong:2.8.1
+    <<: *supabase-common
+    entrypoint: bash -c 'eval "echo \"$$(cat /tmp/kong.yml.template)\"" > /tmp/kong.yml && /docker-entrypoint.sh kong docker-start'
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      KONG_DATABASE: "off"
+      KONG_DECLARATIVE_CONFIG: /tmp/kong.yml
+      KONG_DNS_ORDER: LAST,A,CNAME
+      KONG_PLUGINS: request-transformer,cors,key-auth,acl,basic-auth
+      KONG_NGINX_PROXY_PROXY_BUFFER_SIZE: 160k
+      KONG_NGINX_PROXY_PROXY_BUFFERS: 64 160k
+      SUPABASE_ANON_KEY: ${ANON_KEY}
+      SUPABASE_SERVICE_KEY: ${SERVICE_ROLE_KEY}
+      DASHBOARD_USERNAME: ${DASHBOARD_USERNAME:-supabase}
+      DASHBOARD_PASSWORD: ${DASHBOARD_PASSWORD:-supabase}
+    volumes:
+      - ./docker/kong.yml:/tmp/kong.yml.template:ro
+    ports:
+      - "${KONG_HTTP_PORT:-54321}:8000/tcp"
+      - "${KONG_HTTPS_PORT:-8443}:8443/tcp"
+
+  # GoTrue - Authentication Service
+  auth:
+    image: supabase/gotrue:v2.164.0
+    <<: *supabase-common
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:9999/health"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      GOTRUE_API_HOST: 0.0.0.0
+      GOTRUE_API_PORT: 9999
+      API_EXTERNAL_URL: ${API_EXTERNAL_URL:-http://localhost:54321}
+      GOTRUE_DB_DRIVER: postgres
+      GOTRUE_DB_DATABASE_URL: postgres://supabase_auth_admin:${POSTGRES_PASSWORD}@db:5432/postgres
+      GOTRUE_SITE_URL: ${SITE_URL:-http://localhost:3000}
+      GOTRUE_URI_ALLOW_LIST: ${ADDITIONAL_REDIRECT_URLS:-}
+      GOTRUE_DISABLE_SIGNUP: ${DISABLE_SIGNUP:-false}
+      GOTRUE_JWT_ADMIN_ROLES: service_role
+      GOTRUE_JWT_AUD: authenticated
+      GOTRUE_JWT_DEFAULT_GROUP_NAME: authenticated
+      GOTRUE_JWT_EXP: ${JWT_EXPIRY:-3600}
+      GOTRUE_JWT_SECRET: ${JWT_SECRET}
+      GOTRUE_EXTERNAL_EMAIL_ENABLED: ${ENABLE_EMAIL_SIGNUP:-true}
+      GOTRUE_EXTERNAL_ANONYMOUS_USERS_ENABLED: ${ENABLE_ANONYMOUS_USERS:-false}
+      GOTRUE_MAILER_AUTOCONFIRM: ${ENABLE_EMAIL_AUTOCONFIRM:-false}
+      GOTRUE_SMTP_HOST: ${SMTP_HOST:-}
+      GOTRUE_SMTP_PORT: ${SMTP_PORT:-587}
+      GOTRUE_SMTP_USER: ${SMTP_USER:-}
+      GOTRUE_SMTP_PASS: ${SMTP_PASS:-}
+      GOTRUE_SMTP_ADMIN_EMAIL: ${SMTP_ADMIN_EMAIL:-}
+      GOTRUE_SMTP_MAX_FREQUENCY: 1s
+      GOTRUE_MAILER_URLPATHS_INVITE: /auth/v1/verify
+      GOTRUE_MAILER_URLPATHS_CONFIRMATION: /auth/v1/verify
+      GOTRUE_MAILER_URLPATHS_RECOVERY: /auth/v1/verify
+      GOTRUE_MAILER_URLPATHS_EMAIL_CHANGE: /auth/v1/verify
+      GOTRUE_RATE_LIMIT_HEADER: X-Forwarded-For
+      GOTRUE_RATE_LIMIT_EMAIL_SENT: 100
+
+  # REST API
+  rest:
+    image: postgrest/postgrest:v12.2.3
+    <<: *supabase-common
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/ready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      PGRST_DB_URI: postgres://authenticator:${POSTGRES_PASSWORD}@db:5432/postgres
+      PGRST_DB_SCHEMAS: ${PGRST_DB_SCHEMAS:-public,storage,graphql_public,supamode}
+      PGRST_DB_ANON_ROLE: anon
+      PGRST_JWT_SECRET: ${JWT_SECRET}
+      PGRST_DB_USE_LEGACY_GUCS: "false"
+      PGRST_APP_SETTINGS_JWT_SECRET: ${JWT_SECRET}
+      PGRST_APP_SETTINGS_JWT_EXP: ${JWT_EXPIRY:-3600}
+
+  # Realtime WebSockets
+  realtime:
+    image: supabase/realtime:v2.33.58
+    <<: *supabase-common
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4000/api/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      PORT: 4000
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: supabase_admin
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_NAME: postgres
+      DB_AFTER_CONNECT_QUERY: 'SET search_path TO _realtime'
+      DB_ENC_KEY: ${REALTIME_SECRET:-supabaserealtime}
+      API_JWT_SECRET: ${JWT_SECRET}
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE:-UpNVntn3cDxHJpq99YMc1T1AQgQpc8kfYTuRgBiYa15BLrx8etQoXz3gZv1/u2oq}
+      ERL_AFLAGS: -proto_dist inet_tcp
+      DNS_NODES: "''"
+      RLIMIT_NOFILE: 10000
+
+  # Storage API
+  storage:
+    image: supabase/storage-api:v1.11.13
+    <<: *supabase-common
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:5000/status"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+    depends_on:
+      db:
+        condition: service_healthy
+      rest:
+        condition: service_healthy
+    volumes:
+      - supabase-storage-data:/var/lib/storage
+    environment:
+      ANON_KEY: ${ANON_KEY}
+      SERVICE_KEY: ${SERVICE_ROLE_KEY}
+      DATABASE_URL: postgres://supabase_storage_admin:${POSTGRES_PASSWORD}@db:5432/postgres
+      FILE_SIZE_LIMIT: 52428800
+      STORAGE_BACKEND: file
+      FILE_STORAGE_BACKEND_PATH: /var/lib/storage
+      TENANT_ID: stub
+      REGION: stub
+      GLOBAL_S3_BUCKET: stub
+      ENABLE_IMAGE_TRANSFORMATION: "true"
+      IMGPROXY_URL: http://imgproxy:5001
+
+  # Image Transformation
+  imgproxy:
+    image: darthsim/imgproxy:v3.8.0
+    <<: *supabase-common
+    healthcheck:
+      test: ["CMD", "imgproxy", "health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    environment:
+      IMGPROXY_BIND: :5001
+      IMGPROXY_LOCAL_FILESYSTEM_ROOT: /
+      IMGPROXY_USE_ETAG: "true"
+
+  # Postgres Meta API
+  meta:
+    image: supabase/postgres-meta:v0.84.2
+    <<: *supabase-common
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      PG_META_PORT: 8080
+      PG_META_DB_HOST: db
+      PG_META_DB_PORT: 5432
+      PG_META_DB_NAME: postgres
+      PG_META_DB_USER: supabase_admin
+      PG_META_DB_PASSWORD: ${POSTGRES_PASSWORD}
+
+  # Edge Functions
+  functions:
+    image: supabase/edge-runtime:v1.67.2
+    <<: *supabase-common
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      JWT_SECRET: ${JWT_SECRET}
+      SUPABASE_URL: http://kong:8000
+      SUPABASE_ANON_KEY: ${ANON_KEY}
+      SUPABASE_SERVICE_ROLE_KEY: ${SERVICE_ROLE_KEY}
+      SUPABASE_DB_URL: postgresql://postgres:${POSTGRES_PASSWORD}@db:5432/postgres
+      VERIFY_JWT: "false"
+
+  # Supabase Studio (Dashboard)
+  studio:
+    image: supabase/studio:20241202-71e5240
+    <<: *supabase-common
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/api/health', (r) => process.exit(r.statusCode === 200 ? 0 : 1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    depends_on:
+      db:
+        condition: service_healthy
+      meta:
+        condition: service_started
+    environment:
+      STUDIO_PG_META_URL: http://meta:8080
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      DEFAULT_ORGANIZATION_NAME: Default Organization
+      DEFAULT_PROJECT_NAME: Default Project
+      SUPABASE_URL: http://kong:8000
+      SUPABASE_PUBLIC_URL: ${API_EXTERNAL_URL:-http://localhost:54321}
+      SUPABASE_ANON_KEY: ${ANON_KEY}
+      SUPABASE_SERVICE_KEY: ${SERVICE_ROLE_KEY}
+      AUTH_JWT_SECRET: ${JWT_SECRET}
+      NEXT_PUBLIC_ENABLE_LOGS: "false"
+    ports:
+      - "${STUDIO_PORT:-54323}:3000/tcp"
+
+  # ==============================================================================
+  # APPLICATION SERVICES
+  # ==============================================================================
+
+  # ChatBots Next.js Application
+  chatbots:
+    build:
+      context: .
+      dockerfile: apps/chatbots/Dockerfile
+      args:
+        # For production, provide HTTPS URLs. For local dev, dummy values are used at build time
+        # and overridden at runtime via environment variables
+        NEXT_PUBLIC_SUPABASE_URL: ${NEXT_PUBLIC_SUPABASE_URL:-https://api.example.com}
+        NEXT_PUBLIC_SUPABASE_ANON_KEY: ${ANON_KEY:-placeholder}
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://app.example.com}
+        NEXT_PUBLIC_BILLING_PROVIDER: ${BILLING_PROVIDER:-stripe}
+    restart: unless-stopped
+    networks:
+      - supabase-internal
+    depends_on:
+      kong:
+        condition: service_started
+      db:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      SUPABASE_URL: http://kong:8000
+      SUPABASE_SERVICE_ROLE_KEY: ${SERVICE_ROLE_KEY}
+    ports:
+      - "${CHATBOTS_PORT:-3000}:3000"
+
+  # Supamode API (Hono.js)
+  supamode-api:
+    build:
+      context: ./supamode-main
+      target: api-runner
+    restart: unless-stopped
+    networks:
+      - supabase-internal
+    depends_on:
+      db:
+        condition: service_healthy
+      kong:
+        condition: service_started
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      SUPABASE_URL: http://kong:8000
+      SUPABASE_ANON_KEY: ${ANON_KEY}
+      SERVICE_ROLE_KEY: ${SERVICE_ROLE_KEY}
+      SUPABASE_DATABASE_URL: postgresql://postgres:${POSTGRES_PASSWORD}@db:5432/postgres
+
+  # Supamode Web (React/Vite + Nginx)
+  supamode-web:
+    build:
+      context: ./supamode-main
+      target: app-runner
+      args:
+        VITE_SUPABASE_URL: ${API_EXTERNAL_URL:-http://localhost:54321}
+        VITE_SUPABASE_ANON_KEY: ${ANON_KEY}
+        VITE_SITE_URL: ${SUPAMODE_URL:-http://localhost:8080}
+    restart: unless-stopped
+    networks:
+      - supabase-internal
+    depends_on:
+      supamode-api:
+        condition: service_started
+    environment:
+      API_URL: http://supamode-api:3000
+    ports:
+      - "${SUPAMODE_PORT:-8080}:80"
+
+networks:
+  supabase-internal:
+    driver: bridge
+
+volumes:
+  supabase-db-data:
+  supabase-storage-data:
+

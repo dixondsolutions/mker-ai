@@ -1,0 +1,137 @@
+---
+description: 
+globs: *.tsx
+alwaysApply: false
+---
+# React
+
+## Core Principles
+
+- **Component-Driven Development**: Build applications as a composition of isolated, reusable components
+- **One-Way Data Flow**: Follow React's unidirectional data flow pattern
+- **Single Responsibility**: Each component should have a clear, singular purpose
+- **TypeScript First**: Use TypeScript for type safety and better developer experience
+
+## React Components
+
+### Component Structure
+
+- Always use functional components with TypeScript
+- Name components using PascalCase (e.g., `UserProfile`)
+- Use named exports for components, not default exports
+- Split components by responsibility and avoid "god components"
+- Name files to match their component name (e.g., `user-profile.tsx`)
+
+### Props
+
+- Always type props using TypeScript interfaces or type aliases
+- Use discriminated unions for complex prop types with conditional rendering
+- Destructure props at the start of component functions
+- Use prop spreading cautiously and only when appropriate
+- Provide default props for optional parameters when it makes sense
+
+```typescript
+type ButtonProps = {
+  variant: 'primary' | 'secondary' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  children: React.ReactNode;
+  disabled?: boolean;
+  onClick?: () => void;
+};
+
+function Button({ 
+  variant, 
+  size = 'md', 
+  children, 
+  disabled = false, 
+  onClick 
+}: ButtonProps) {
+  // Component implementation
+}
+```
+
+### State Management
+
+- Keep state as local as possible
+- Lift state up when multiple components need access
+- Use Context sparingly and only for truly global state
+- Prefer the "Container/Presenter" pattern when separating data and UI
+
+```typescript
+// Container component (manages data)
+function UserProfileContainer() {
+  const userData = useUserData();
+  
+  if (userData.isLoading) {
+    return <LoadingSpinner />;
+  }
+
+  if (userData.error) {
+    return <ErrorMessage error={userData.error} />;
+  }
+  
+  return <UserProfilePresenter data={userData.data} />;
+}
+
+// Presenter component (renders UI)
+function UserProfilePresenter({ data }: { data: UserData }) {
+  return (
+    <div>
+      <h1>{data.name}</h1>
+      {/* Rest of the UI */}
+    </div>
+  );
+}
+```
+
+### Hooks
+
+- Follow the Rules of Hooks (only call hooks at the top level, only call them from React functions)
+- Create custom hooks for reusable logic
+- Keep custom hooks focused on a single concern
+- Name custom hooks with a 'use' prefix (e.g., `useUserProfile`)
+- Extract complex effect logic into separate functions
+- Always provide a complete dependencies array to `useEffect`
+
+### Performance Optimization
+
+- Apply `useMemo` for expensive calculations
+- Use `useCallback` for functions passed as props to child components
+- Split code using dynamic imports and `React.lazy()`
+
+```typescript
+const MemoizedComponent = React.memo(function Component(props: Props) {
+  // Component implementation
+});
+
+// For expensive calculations
+const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+
+// For callback functions passed as props
+const memoizedCallback = useCallback(() => {
+  doSomething(a, b);
+}, [a, b]);
+```
+
+### Data Fetching
+
+- Use React Query (TanStack Query) for data fetching in Client Components
+- Create custom hooks for data fetching logic (e.g., `useUserData`)
+- Always handle loading, success, and error states
+
+### Form Handling
+
+- Use libraries like React Hook Form for complex forms
+- Implement proper validation with libraries like Zod
+- Create reusable form components
+- Handle form submissions with loading and error states
+- Use controlled components for form inputs
+
+### Error Handling
+
+- Implement error boundaries to catch and handle component errors if using client components
+- Always handle network request errors
+- Provide user-friendly error messages
+- Log errors appropriately
+- Implement retry mechanisms where applicable
+

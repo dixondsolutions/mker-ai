@@ -1,0 +1,55 @@
+{
+  "name": "@kit/supabase",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "clean": "git clean -xdf .turbo node_modules",
+    "format": "prettier --check \"**/*.{ts,tsx}\"",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "drizzle": "drizzle-kit",
+    "drizzle:pull": "drizzle-kit pull --config drizzle.config.ts",
+    "demo:setup": "pnpm dlx tsx src/setup-demo-schema.ts"
+  },
+  "prettier": "@kit/prettier-config",
+  "exports": {
+    "./fetch-headers": "./src/fetch-headers.ts",
+    "./check-requires-mfa": "./src/check-requires-mfa.ts",
+    "./require-user": "./src/require-user.ts",
+    "./hooks/*": "./src/hooks/*.ts",
+    "./provider": "./src/auth-provider.tsx",
+    "./client": "./src/clients/drizzle-client.ts",
+    "./schema": "./src/drizzle/schema.ts",
+    "./hono": "./src/clients/hono-client.ts",
+    "./browser-client": "./src/clients/browser-client.ts",
+    "./table-display": "./src/services/table-display-service.ts",
+    "./utils/perf-logger": "./src/utils/perf-logger.ts"
+  },
+  "dependencies": {
+    "@kit/shared": "workspace:*",
+    "@supabase/ssr": "catalog:",
+    "drizzle-kit": "catalog:",
+    "drizzle-orm": "catalog:",
+    "hono": "catalog:",
+    "jwt-decode": "catalog:"
+  },
+  "devDependencies": {
+    "@kit/eslint-config": "0.1.0",
+    "@kit/prettier-config": "0.1.0",
+    "@kit/typescript-config": "0.1.0",
+    "@supabase/supabase-js": "catalog:",
+    "@tanstack/react-query": "catalog:",
+    "@types/react": "catalog:",
+    "postgres": "catalog:",
+    "react": "catalog:",
+    "react-router": "catalog:",
+    "zod": "catalog:"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "src/*"
+      ]
+    }
+  }
+}

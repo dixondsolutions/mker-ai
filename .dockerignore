@@ -1,0 +1,48 @@
+# Dependencies
+**/node_modules
+**/.pnpm-store
+
+# Build outputs
+**/.next
+**/out
+**/dist
+**/.turbo
+
+# Development
+**/.env*.local
+**/.env.development
+**/*.log
+
+# IDE
+**/.idea
+**/.vscode
+**/*.swp
+**/*.swo
+
+# Testing
+**/coverage
+**/.nyc_output
+**/playwright-report
+
+# OS
+**/.DS_Store
+**/Thumbs.db
+
+# Git
+.git
+.gitignore
+
+# Documentation (except content)
+*.md
+!**/content/**/*.md
+
+# Docker files in subdirectories
+**/Dockerfile*
+**/docker-compose*
+!apps/chatbots/Dockerfile
+!supamode-main/Dockerfile
+
+# E2E tests
+apps/e2e
+
+

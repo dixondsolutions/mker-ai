@@ -1,0 +1,33 @@
+{
+  "name": "@kit/schema",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "clean": "git clean -xdf .next .turbo node_modules",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --check \"**/*.{js,cjs,mjs,ts,tsx,md,json}\"",
+    "typecheck": "tsc --noEmit",
+    "generate": "pnpm dlx tsx src/cli.ts generate-seed"
+  },
+  "dependencies": {
+    "chalk": "catalog:",
+    "commander": "catalog:"
+  },
+  "devDependencies": {
+    "@kit/eslint-config": "0.1.0",
+    "@kit/prettier-config": "0.1.0",
+    "@kit/typescript-config": "0.1.0",
+    "@supabase/supabase-js": "catalog:",
+    "@types/node": "catalog:",
+    "zod": "catalog:"
+  },
+  "prettier": "@kit/prettier-config",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "src/*"
+      ]
+    }
+  }
+}

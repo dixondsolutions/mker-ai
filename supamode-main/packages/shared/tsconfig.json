@@ -1,0 +1,12 @@
+{
+  "extends": "@kit/typescript-config/base.json",
+  "compilerOptions": {
+    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json"
+  },
+  "include": [
+    "*.ts",
+    "src",
+    "../features/auth/src/api/utils/bulk-permission-builder.ts"
+  ],
+  "exclude": ["node_modules"]
+}

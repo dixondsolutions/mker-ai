@@ -1,0 +1,9 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://supamode-api.vercel.app/:path*"
+    },
+    { "source": "/:path*", "destination": "/" }
+  ]
+}

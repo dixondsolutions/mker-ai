@@ -1,0 +1,51 @@
+{
+  "name": "supamode",
+  "private": true,
+  "version": "0.1.26",
+  "author": {
+    "url": "https://makerkit.dev/supabase-cms",
+    "name": "Supamode"
+  },
+  "sideEffects": false,
+  "scripts": {
+    "init": "turbo gen setup",
+    "dev": "turbo dev",
+    "format": "turbo format --cache-dir=.turbo --continue -- --cache --cache-location='node_modules/.cache/.prettiercache' --ignore-path='../../.gitignore'",
+    "format:fix": "turbo format --cache-dir=.turbo --continue -- --write --cache --cache-location='node_modules/.cache/.prettiercache' --ignore-path='../../.gitignore'",
+    "lint": "turbo lint --cache-dir=.turbo --continue -- --cache --cache-location 'node_modules/.cache/.eslintcache' && manypkg check",
+    "lint:fix": "turbo lint --cache-dir=.turbo --continue -- --fix --cache --cache-location 'node_modules/.cache/.eslintcache' && manypkg fix",
+    "supabase:web:start": "pnpm --filter app supabase:start",
+    "supabase:web:stop": "pnpm --filter app supabase:stop",
+    "supabase:web:typegen": "pnpm --filter app supabase:typegen && pnpm run --filter \"@kit/supabase\" drizzle:pull",
+    "supabase:web:reset": "pnpm --filter app supabase:reset --debug",
+    "supabase:web:test": "pnpm --filter app supabase:test",
+    "seed:generate": "pnpm --filter '@kit/schema' schema:gen-seed",
+    "typecheck": "turbo typecheck --cache-dir=.turbo",
+    "postinstall": "manypkg fix",
+    "test:e2e": "pnpm run --filter e2e e2e --workers 1",
+    "test:e2e:fast": "pnpm run --filter e2e e2e --workers 16",
+    "test:e2e:ui": "pnpm run --filter e2e e2e:ui",
+    "test:unit": "turbo run test --cache-dir=.turbo",
+    "build": "turbo build --cache-dir=.turbo",
+    "clean": "git clean -xdf node_modules dist build",
+    "clean:workspaces": "turbo clean",
+    "docker:run": "docker compose up --build",
+    "start:api": "pnpm --filter api start",
+    "start:app": "pnpm --filter app start",
+    "generate-schema": "pnpm --filter '@kit/schema' generate",
+    "vercel:dev": "pnpm dlx vercel dev",
+    "vercel:deploy": "pnpm dlx vercel deploy"
+  },
+  "packageManager": "pnpm@10.19.0",
+  "engines": {
+    "node": ">=20.12"
+  },
+  "devDependencies": {
+    "@manypkg/cli": "catalog:",
+    "@supabase/supabase-js": "^2.84.0",
+    "@turbo/gen": "catalog:",
+    "@types/node": "catalog:",
+    "turbo": "catalog:",
+    "typescript": "catalog:"
+  }
+}

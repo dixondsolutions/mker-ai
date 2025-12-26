@@ -1,0 +1,102 @@
+import { forwardRef } from 'react';
+
+import { NavLink } from 'react-router';
+
+import { cn } from '../../lib/utils';
+
+interface FooterSection {
+  heading: React.ReactNode;
+  links: Array<{
+    href: string;
+    label: React.ReactNode;
+  }>;
+}
+
+interface FooterProps extends React.HTMLAttributes<HTMLElement> {
+  logo: React.ReactNode;
+  description: React.ReactNode;
+  copyright: React.ReactNode;
+  sections: FooterSection[];
+}
+
+export const Footer = forwardRef<HTMLElement, FooterProps>(
+  function MarketingFooterComponent(
+    { className, logo, description, copyright, sections, ...props },
+    ref,
+  ) {
+    return (
+      <footer
+        ref={ref}
+        className={cn(
+          'site-footer relative mt-auto w-full py-8 2xl:py-16',
+          className,
+        )}
+        {...props}
+      >
+        <div className="container">
+          <div className="flex flex-col gap-y-8 lg:flex-row lg:space-y-0">
+            <div className="flex w-full space-x-2 lg:w-4/12 xl:w-4/12 xl:space-x-6 2xl:space-x-8">
+              <div className="flex flex-col gap-y-4">
+                <div>{logo}</div>
+                <div className="flex flex-col gap-y-4">
+                  <div>
+                    <p className="text-muted-foreground text-sm">
+                      {description}
+                    </p>
+                  </div>
+                  <div className="text-muted-foreground flex text-xs">
+                    <p>{copyright}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex w-full flex-col gap-y-8 lg:flex-row lg:justify-end lg:space-y-0 lg:space-x-6 xl:space-x-16">
+              {sections.map((section, index) => (
+                <div key={index}>
+                  <div className="flex flex-col gap-3.5">
+                    <FooterSectionHeading>
+                      {section.heading}
+                    </FooterSectionHeading>
+
+                    <FooterSectionList>
+                      {section.links.map((link, linkIndex) => (
+                        <FooterLink key={linkIndex} href={link.href}>
+                          {link.label}
+                        </FooterLink>
+                      ))}
+                    </FooterSectionList>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </footer>
+    );
+  },
+);
+
+function FooterSectionHeading(props: React.PropsWithChildren) {
+  return <span className="font-heading">{props.children}</span>;
+}
+
+function FooterSectionList(props: React.PropsWithChildren) {
+  return <ul className="flex flex-col gap-3.5">{props.children}</ul>;
+}
+
+function FooterLink({
+  href,
+  children,
+}: React.PropsWithChildren<{ href: string }>) {
+  const isExternal = href.startsWith('https://');
+  const target = isExternal ? '_blank' : '_self';
+
+  return (
+    <li className="text-muted-foreground text-sm hover:underline [&>a]:transition-colors">
+      <NavLink target={target} to={href}>
+        {children}
+      </NavLink>
+    </li>
+  );
+}

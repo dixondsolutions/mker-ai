@@ -1,0 +1,67 @@
+{
+  "name": "@kit/data-explorer-core",
+  "private": true,
+  "version": "0.1.0",
+  "exports": {
+    ".": "./index.ts",
+    "./query-builder": "./src/query-builder.ts",
+    "./services": "./src/services.ts",
+    "./utils": "./src/utils/index.ts"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "src/*"
+      ]
+    }
+  },
+  "scripts": {
+    "clean": "rm -rf .turbo node_modules",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --check \"**/*.{js,cjs,mjs,ts,tsx,md,json}\"",
+    "typecheck": "tsc --noEmit",
+    "test:watch": "vitest",
+    "test": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "@hono/zod-validator": "catalog:",
+    "@hookform/resolvers": "catalog:",
+    "@kit/api": "0.1.0",
+    "@kit/auth": "workspace:*",
+    "@kit/eslint-config": "0.1.0",
+    "@kit/filters": "0.1.0",
+    "@kit/filters-core": "0.1.0",
+    "@kit/formatters": "workspace:*",
+    "@kit/prettier-config": "0.1.0",
+    "@kit/query-builder": "workspace:*",
+    "@kit/shared": "workspace:*",
+    "@kit/storage-explorer": "workspace:*",
+    "@kit/supabase": "0.1.0",
+    "@kit/table": "workspace:*",
+    "@kit/text-editor": "workspace:*",
+    "@kit/types": "workspace:*",
+    "@kit/typescript-config": "0.1.0",
+    "@kit/ui": "0.1.0",
+    "@marsidev/react-turnstile": "catalog:",
+    "@radix-ui/react-icons": "catalog:",
+    "@supabase/supabase-js": "catalog:",
+    "@tanstack/react-query": "catalog:",
+    "@tanstack/react-table": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@vitest/coverage-v8": "catalog:",
+    "date-fns": "catalog:",
+    "drizzle-orm": "catalog:",
+    "hono": "catalog:",
+    "lucide-react": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "react-hook-form": "catalog:",
+    "react-router": "catalog:",
+    "rxjs": "catalog:",
+    "vitest": "catalog:",
+    "zod": "catalog:"
+  },
+  "prettier": "@kit/prettier-config"
+}

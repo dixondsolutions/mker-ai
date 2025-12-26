@@ -26,6 +26,8 @@ const INTERNAL_PACKAGES = [
 /** @type {import('next').NextConfig} */
 const config = {
   reactStrictMode: true,
+  /** Enable standalone output for Docker deployments */
+  output: 'standalone',
   /** Enables hot reloading for local packages without a build step */
   transpilePackages: INTERNAL_PACKAGES,
   images: getImagesConfig(),

@@ -1,0 +1,44 @@
+{
+  "name": "api",
+  "version": "0.1.26",
+  "scripts": {
+    "dev": "pnpm run dev:node",
+    "dev:node": "tsx --watch --env-file .env app/node.ts",
+    "dev:bun": "bun run --hot app/routes.ts --env-file .env",
+    "tsup": "tsup",
+    "start": "tsx app/node.ts",
+    "clean": "git clean -xdf .next .turbo node_modules",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --check \"**/*.{js,cjs,mjs,ts,tsx,md,json}\"",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint ."
+  },
+  "private": true,
+  "dependencies": {
+    "@hono/node-server": "catalog:",
+    "hono": "catalog:"
+  },
+  "prettier": "@kit/prettier-config",
+  "devDependencies": {
+    "@kit/audit-logs": "workspace:*",
+    "@kit/auth": "workspace:*",
+    "@kit/captcha": "workspace:*",
+    "@kit/dashboards": "workspace:*",
+    "@kit/data-explorer": "workspace:*",
+    "@kit/eslint-config": "workspace:*",
+    "@kit/navigation": "workspace:*",
+    "@kit/permissions": "workspace:*",
+    "@kit/prettier-config": "workspace:*",
+    "@kit/resources": "workspace:*",
+    "@kit/settings": "workspace:*",
+    "@kit/storage-explorer": "workspace:*",
+    "@kit/supabase": "workspace:*",
+    "@kit/typescript-config": "workspace:*",
+    "@kit/users-explorer": "workspace:*",
+    "dotenv-cli": "catalog:",
+    "pino-pretty": "catalog:",
+    "tsup": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:"
+  }
+}

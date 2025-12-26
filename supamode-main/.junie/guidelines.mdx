@@ -1,0 +1,494 @@
+# Supamode
+
+Supamode is an application similar to Laravel Nova, a sort of god mode for any Supabase application.
+
+The tech stack includes:
+
+- SPA with React Router 7, Shadcn UI and Tailwind CSS v4 at apps/app
+- API using Hono at apps/api
+- Supabase client using Drizzle [drizzle-client.ts](mdc:packages/supabase/src/clients/drizzle-client.ts) "@kit/database/client"
+- Zod
+
+# Typescript
+
+- Write clean, clear, well-designed, explicit Typescript
+- Make sure types are validated strictly
+- Use implicit type inference, unless impossible
+- Consider using classes for server-side services, but export a function instead of the class
+
+```tsx
+// service.ts
+class UserService {
+  getUser(id: number) {
+    // ... implementation ...
+    return { id, name: "Example User" };
+  }
+}
+
+export function createUserService() {
+  return new UserService();
+}
+```
+
+- Follow the Single Responsibility Principle (SRP). Each module/function/class should have one reason to change.
+- Favor composition over inheritance.
+- Handle errors gracefully using try/catch and appropriate error types.
+- Keep functions short and focused.
+- Use descriptive names for variables, functions, and classes.
+- Avoid unnecessary complexity.
+- Avoid using `any` type as much as possible. If necessary, use `unknown`
+- Use enums only when appropriate. Consider union types of string literals as an alternative.
+- Be aware of performance implications of your code.
+
+# React
+
+## Core Principles
+
+- **Component-Driven Development**: Build applications as a composition of isolated, reusable components
+- **One-Way Data Flow**: Follow React's unidirectional data flow pattern
+- **Single Responsibility**: Each component should have a clear, singular purpose
+- **TypeScript First**: Use TypeScript for type safety and better developer experience
+
+## React Components
+
+### Component Structure
+
+- Always use functional components with TypeScript
+- Name components using PascalCase (e.g., `UserProfile`)
+- Use named exports for components, not default exports
+- Split components by responsibility and avoid "god components"
+- Name files to match their component name (e.g., `user-profile.tsx`)
+
+### Props
+
+- Always type props using TypeScript interfaces or type aliases
+- Use discriminated unions for complex prop types with conditional rendering
+- Destructure props at the start of component functions
+- Use prop spreading cautiously and only when appropriate
+- Provide default props for optional parameters when it makes sense
+
+```typescript
+type ButtonProps = {
+  variant: "primary" | "secondary" | "ghost";
+  size?: "sm" | "md" | "lg";
+  children: React.ReactNode;
+  disabled?: boolean;
+  onClick?: () => void;
+};
+
+function Button({
+  variant,
+  size = "md",
+  children,
+  disabled = false,
+  onClick,
+}: ButtonProps) {
+  // Component implementation
+}
+```
+
+### State Management
+
+- Keep state as local as possible
+- Lift state up when multiple components need access
+- Use Context sparingly and only for truly global state
+- Prefer the "Container/Presenter" pattern when separating data and UI
+
+```typescript
+// Container component (manages data)
+function UserProfileContainer() {
+  const userData = useUserData();
+
+  if (userData.isLoading) {
+    return <LoadingSpinner />;
+  }
+
+  if (userData.error) {
+    return <ErrorMessage error={userData.error} />;
+  }
+
+  return <UserProfilePresenter data={userData.data} />;
+}
+
+// Presenter component (renders UI)
+function UserProfilePresenter({ data }: { data: UserData }) {
+  return (
+    <div>
+      <h1>{data.name}</h1>
+      {/* Rest of the UI */}
+    </div>
+  );
+}
+```
+
+### Hooks
+
+- Follow the Rules of Hooks (only call hooks at the top level, only call them from React functions)
+- Create custom hooks for reusable logic
+- Keep custom hooks focused on a single concern
+- Name custom hooks with a 'use' prefix (e.g., `useUserProfile`)
+- Extract complex effect logic into separate functions
+- Always provide a complete dependencies array to `useEffect`
+
+### Performance Optimization
+
+- Apply `useMemo` for expensive calculations
+- Use `useCallback` for functions passed as props to child components
+- Split code using dynamic imports and `React.lazy()`
+
+```typescript
+const MemoizedComponent = React.memo(function Component(props: Props) {
+  // Component implementation
+});
+
+// For expensive calculations
+const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+
+// For callback functions passed as props
+const memoizedCallback = useCallback(() => {
+  doSomething(a, b);
+}, [a, b]);
+```
+
+### Data Fetching
+
+- Use React Query (TanStack Query) for data fetching in Client Components
+- Create custom hooks for data fetching logic (e.g., `useUserData`)
+- Always handle loading, success, and error states
+
+### Form Handling
+
+- Use libraries like React Hook Form for complex forms
+- Implement proper validation with libraries like Zod
+- Create reusable form components
+- Handle form submissions with loading and error states
+- Use controlled components for form inputs
+
+### Error Handling
+
+- Implement error boundaries to catch and handle component errors if using client components
+- Always handle network request errors
+- Provide user-friendly error messages
+- Log errors appropriately
+- Implement retry mechanisms where applicable
+
+# JSX Best Practices
+
+This guide outlines our conventions for writing clean, maintainable JSX in React applications.
+
+## Utility Functions
+
+### Class Name Management
+
+When merging complex classes, always use the `cn` utility from `clsx`/`tailwind-merge`:
+
+```tsx
+import { cn } from '@kit/ui/utils';
+
+// Simple usage
+<button className={cn('btn', className)}>Submit</button>
+
+// Conditional classes
+<div className={cn('base-class', {
+  'text-lg': isLarge,
+  'bg-primary': isPrimary,
+  'opacity-50': isDisabled
+})}>
+  Content
+</div>
+
+// Array syntax for dynamic classes
+<span className={cn([
+  'badge',
+  variant === 'success' && 'badge-success',
+  variant === 'error' && 'badge-error'
+])}>
+  {label}
+</span>
+```
+
+Why use `cn`:
+
+- Handles merging tailwind classes correctly
+- Automatically removes duplicate classes
+- Resolves conflicting classes by keeping the last one
+- Provides type-safety with TypeScript
+
+## Common Patterns
+
+### Conditional Rendering with `If`
+
+Prefer the `If` component to complex ternary operators in JSX:
+
+```tsx
+import { If } from '@kit/ui/if';
+
+// Basic usage
+<If condition={isLoading}>
+  <Spinner />
+</If>
+
+// With fallback
+<If condition={isLoading} fallback={<Content />}>
+  <Spinner />
+</If>
+
+// With callback function for condition match
+<If condition={user}>
+  {(userData) => <UserProfile data={userData} />}
+</If>
+```
+
+Benefits:
+
+- Improves readability compared to ternary operators
+- Type-safe with TypeScript
+- Reduces nesting and complexity in JSX
+
+### List Rendering
+
+Consistently use these patterns for list rendering:
+
+```tsx
+// Empty state handling, avoid ternaries
+{
+  items.length > 0 ? (
+    <ul className="list">
+      {items.map((item) => (
+        <li key={item.id}>{item.name}</li>
+      ))}
+    </ul>
+  ) : (
+    <EmptyState message="No items found" />
+  );
+}
+
+// Even better with If component
+<If
+  condition={items.length > 0}
+  fallback={<EmptyState message="No items found" />}
+>
+  <ul className="list">
+    {items.map((item) => (
+      <li key={item.id}>{item.name}</li>
+    ))}
+  </ul>
+</If>;
+```
+
+## Error and Loading States
+
+Use consistent patterns for handling loading and error states:
+
+```tsx
+// Loading state
+<If condition={isLoading}>
+  <div className="flex justify-center p-8">
+    <Spinner />
+  </div>
+</If>
+
+// Error state that infer the type of the condition. The type of the variable "err" is now inferred
+// Always use this pattern when the value of the condition is used within the body
+<If condition={error}>
+  {(err) => (
+    <Alert variant="destructive">
+      <AlertCircle className="h-4 w-4" />
+      <AlertTitle>
+        <Trans i18nKey="common:errorTitle" />
+      </AlertTitle>
+
+      <AlertDescription>
+        {err.message}
+      </AlertDescription>
+    </Alert>
+  )}
+</If>
+
+// Empty state
+<If condition={items.length === 0}>
+  <div className="flex flex-col items-center justify-center p-8 text-center">
+    <EmptyIcon className="h-12 w-12 text-muted-foreground" />
+
+    <h3 className="mt-4 text-lg font-medium">
+      <Trans i18nKey="common:noData" />
+    </h3>
+
+    <p className="text-sm text-muted-foreground">
+      <Trans i18nKey="common:noDataDescription" />
+    </p>
+  </div>
+</If>
+```
+
+## Testing Attributes
+
+Add consistent data attributes for testing:
+
+```tsx
+<button data-testid="submit-button">
+  Submit
+</button>
+
+<div data-testid="user-profile" data-user-id={user.id}>
+  {/* User profile content */}
+</div>
+
+<form data-testid="signup-form">
+  {/* Form fields */}
+</form>
+```
+
+## API
+
+The API uses Hono [index.ts](mdc:apps/api/app/routes/index.ts) and acts as a self-deployed API layer separately from the SPA. The client uses the Drizzle client [drizzle-client.ts](mdc:packages/supabase/src/clients/drizzle-client.ts) to interact with the Database.
+
+A Hono route rarely contains any logic: instead, create a service class that encapsulate this logic, and call it in the Hono route.
+
+Export a Hono API from a package and let the main Hono entrypoint register it.
+
+# Database Rules
+
+## Database Architecture
+
+- Supabase uses Postgres
+- We strive to create a safe, robust, performant schema
+- Accounts are the general concept of a user account, defined by the having the same ID as Supabase Auth's users (personal). They can be a team account or a personal account.
+- Generally speaking, other tables will be used to store data related to the account. For example, a table `notes` would have a foreign key `account_id` to link it to an account.
+
+## Schemas
+
+- The DB schemas are available at `apps/web/supabase/schemas`
+- To edit the DB schema, we can either change the schema files, or created new ones
+- To create a new schema, create a file at `apps/web/supabase/schemas/<number>-<name>.sql`
+
+## Migrations
+
+- After creating a schema, we can create a migration
+- Use the command `pnpm --filter web supabase:db:diff` for creating migrations from schemas
+- After generating a migration, reset the database for applying the changes using the command `pnpm --filter web supabase:db:reset`
+
+## Security & RLS
+
+- Using RLS, we must ensure that only the account owner can access the data. Always write safe RLS policies and ensure that the policies are enforced.
+- Unless specified, always enable RLS when creating a table. Propose the required RLS policies ensuring the safety of the data.
+- Always consider any required constraints and triggers are in place for data consistency
+- Always consider the compromises you need to make and explain them so I can make an educated decision. Follow up with the considerations make and explain them.
+- Always consider the security of the data and explain the security implications of the data.
+- Always use Postgres schemas explicitly (e.g., `supamode.accounts`)
+- Consider the required compromises between simplicity, functionality and developer experience. However, never compromise on security, which is paramount and fundamental.
+- Use existing helper functions for access control instead of making your own queries, unless unavailable
+
+## Schema Overview
+
+Makerkit uses a Supabase Postgres database with a well-defined schema focused on multi-tenancy through the concepts of accounts (both personal and team) and robust permission systems.
+
+### Database Schema
+
+Refer to the Drizzle schema for a detailed overview [schema.ts](mdc:packages/supabase/src/drizzle/schema.ts) and its relationships at [relations.ts](mdc:packages/supabase/src/drizzle/relations.ts)
+
+# UI Components
+
+- Reusable UI components are defined in the "packages/ui" package named "@kit/ui".
+- By exporting the component from the "exports" field, we can import it using the "@kit/ui/{component-name}" format.
+
+## Styling
+
+- Styling is done using Tailwind CSS. We use the "cn" function from the "@kit/ui/utils" package to generate class names.
+- Avoid fixes classes such as "bg-gray-500". Instead, use Shadcn classes such as "bg-background", "text-secondary-foreground", "text-muted-foreground", etc.
+
+## Importing Components
+
+```tsx
+// Import Shadcn UI components
+import { Button } from "@kit/ui/button";
+import { Card } from "@kit/ui/card";
+import { toast } from "@kit/ui/sonner";
+
+// Import Makerkit-specific components
+import { If } from "@kit/ui/if";
+import { Trans } from "@kit/ui/trans";
+import { ProfileAvatar } from "@kit/ui/profile-avatar";
+```
+
+## Core Components
+
+All components are exported from the "packages/ui/src/index.ts" file using the export "@kit/ui/{component-name}".
+
+| Component        | Description                               | Import Path                                                                                     |
+| ---------------- | ----------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `Accordion`      | Expandable/collapsible content sections   | `@kit/ui/accordion` [accordion.tsx](mdc:packages/ui/src/shadcn/accordion.tsx)                   |
+| `AlertDialog`    | Modal dialog for important actions        | `@kit/ui/alert-dialog` [alert-dialog.tsx](mdc:packages/ui/src/shadcn/alert-dialog.tsx)          |
+| `Alert`          | Status/notification messages              | `@kit/ui/alert` [alert.tsx](mdc:packages/ui/src/shadcn/alert.tsx)                               |
+| `Avatar`         | User profile images with fallback         | `@kit/ui/avatar` [avatar.tsx](mdc:packages/ui/src/shadcn/avatar.tsx)                            |
+| `Badge`          | Small status indicators                   | `@kit/ui/badge` [badge.tsx](mdc:packages/ui/src/shadcn/badge.tsx)                               |
+| `Breadcrumb`     | Navigation path indicators                | `@kit/ui/breadcrumb` [breadcrumb.tsx](mdc:packages/ui/src/shadcn/breadcrumb.tsx)                |
+| `Button`         | Clickable action elements                 | `@kit/ui/button` [button.tsx](mdc:packages/ui/src/shadcn/button.tsx)                            |
+| `Calendar`       | Date picker and date display              | `@kit/ui/calendar` [calendar.tsx](mdc:packages/ui/src/shadcn/calendar.tsx)                      |
+| `Card`           | Container for grouped content             | `@kit/ui/card` [card.tsx](mdc:packages/ui/src/shadcn/card.tsx)                                  |
+| `Checkbox`       | Selection input                           | `@kit/ui/checkbox` [checkbox.tsx](mdc:packages/ui/src/shadcn/checkbox.tsx)                      |
+| `Command`        | Command palette interface                 | `@kit/ui/command` [command.tsx](mdc:packages/ui/src/shadcn/command.tsx)                         |
+| `DataTable`      | Table                                     | `@kit/ui/data-table` [data-table.tsx](mdc:packages/ui/src/shadcn/data-table.tsx)                |
+| `Dialog`         | Modal window for focused interactions     | `@kit/ui/dialog` [dialog.tsx](mdc:packages/ui/src/shadcn/dialog.tsx)                            |
+| `DropdownMenu`   | Menu triggered by a button                | `@kit/ui/dropdown-menu` [dropdown-menu.tsx](mdc:packages/ui/src/shadcn/dropdown-menu.tsx)       |
+| `Form`           | Form components with validation           | `@kit/ui/form` [form.tsx](mdc:packages/ui/src/shadcn/form.tsx)                                  |
+| `Input`          | Text input field                          | `@kit/ui/input` [input.tsx](mdc:packages/ui/src/shadcn/input.tsx)                               |
+| `Input OTP`      | OTP Text input field                      | `@kit/ui/input-otp` [input-otp.tsx](mdc:packages/ui/src/shadcn/input-otp.tsx)                   |
+| `Label`          | Text label for form elements              | `@kit/ui/label` [label.tsx](mdc:packages/ui/src/shadcn/label.tsx)                               |
+| `NavigationMenu` | Hierarchical navigation component         | `@kit/ui/navigation-menu` [navigation-menu.tsx](mdc:packages/ui/src/shadcn/navigation-menu.tsx) |
+| `Popover`        | Floating content triggered by interaction | `@kit/ui/popover` [popover.tsx](mdc:packages/ui/src/shadcn/popover.tsx)                         |
+| `RadioGroup`     | Radio button selection group              | `@kit/ui/radio-group` [radio-group.tsx](mdc:packages/ui/src/shadcn/radio-group.tsx)             |
+| `ScrollArea`     | Customizable scrollable area              | `@kit/ui/scroll-area` [scroll-area.tsx](mdc:packages/ui/src/shadcn/scroll-area.tsx)             |
+| `Select`         | Dropdown selection menu                   | `@kit/ui/select` [select.tsx](mdc:packages/ui/src/shadcn/select.tsx)                            |
+| `Separator`      | Visual divider between content            | `@kit/ui/separator` [separator.tsx](mdc:packages/ui/src/shadcn/separator.tsx)                   |
+| `Sheet`          | Sliding panel from screen edge            | `@kit/ui/sheet` [sheet.tsx](mdc:packages/ui/src/shadcn/sheet.tsx)                               |
+| `Sidebar`        | Advanced sidebar navigation               | `@kit/ui/shadcn-sidebar` [sidebar.tsx](mdc:packages/ui/src/shadcn/sidebar.tsx)                  |
+| `Skeleton`       | Loading placeholder                       | `@kit/ui/skeleton` [skeleton.tsx](mdc:packages/ui/src/shadcn/skeleton.tsx)                      |
+| `Switch`         | Toggle control                            | `@kit/ui/switch` [switch.tsx](mdc:packages/ui/src/shadcn/switch.tsx)                            |
+| `Toast`          | Toaster                                   | `@kit/ui/sonner` [sonner.tsx](mdc:packages/ui/src/shadcn/sonner.tsx)                            |
+| `Tabs`           | Tab-based navigation                      | `@kit/ui/tabs` [tabs.tsx](mdc:packages/ui/src/shadcn/tabs.tsx)                                  |
+| `Textarea`       | Multi-line text input                     | `@kit/ui/textarea` [textarea.tsx](mdc:packages/ui/src/shadcn/textarea.tsx)                      |
+| `Tooltip`        | Contextual information on hover           | `@kit/ui/tooltip` [tooltip.tsx](mdc:packages/ui/src/shadcn/tooltip.tsx)                         |
+
+## Makerkit-specific Components
+
+"@kit/ui/<component-name>" components are defined in the "packages/ui/src/makerkit" directory.
+
+| Component              | Description                         | Import Path                                                                                       |
+| ---------------------- | ----------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `If`                   | Conditional rendering component     | `@kit/ui/if` [if.tsx](mdc:packages/ui/src/makerkit/if.tsx)                                        |
+| `Trans`                | Internationalization text component | `@kit/ui/trans` [trans.tsx](mdc:packages/ui/src/makerkit/trans.tsx)                               |
+| `Page`                 | Page layout with navigation         | `@kit/ui/page` [page.tsx](mdc:packages/ui/src/makerkit/page.tsx)                                  |
+| `GlobalLoader`         | Full-page loading indicator         | `@kit/ui/global-loader` [global-loader.tsx](mdc:packages/ui/src/makerkit/global-loader.tsx)       |
+| `ImageUploader`        | Image upload component              | `@kit/ui/image-uploader` [image-uploader.tsx](mdc:packages/ui/src/makerkit/image-uploader.tsx)    |
+| `ProfileAvatar`        | User avatar with fallback           | `@kit/ui/profile-avatar` [profile-avatar.tsx](mdc:packages/ui/src/makerkit/profile-avatar.tsx)    |
+| `DataTable` (Enhanced) | Extended data table with pagination | `@kit/ui/enhanced-data-table` [data-table.tsx](mdc:packages/ui/src/makerkit/data-table.tsx)       |
+| `Stepper`              | Multi-step process indicator        | `@kit/ui/stepper` [stepper.tsx](mdc:packages/ui/src/makerkit/stepper.tsx)                         |
+| `CookieBanner`         | GDPR-compliant cookie notice        | `@kit/ui/cookie-banner` [cookie-banner.tsx](mdc:packages/ui/src/makerkit/cookie-banner.tsx)       |
+| `CardButton`           | Card-styled button                  | `@kit/ui/card-button` [card-button.tsx](mdc:packages/ui/src/makerkit/card-button.tsx)             |
+| `MultiStepForm`        | Form with multiple steps            | `@kit/ui/multi-step-form` [multi-step-form.tsx](mdc:packages/ui/src/makerkit/multi-step-form.tsx) |
+| `EmptyState`           | Empty data placeholder              | `@kit/ui/empty-state` [empty-state.tsx](mdc:packages/ui/src/makerkit/empty-state.tsx)             |
+| `AppBreadcrumbs`       | Application path breadcrumbs        | `@kit/ui/app-breadcrumbs` [app-breadcrumbs.tsx](mdc:packages/ui/src/makerkit/app-breadcrumbs.tsx) |
+
+## Marketing Components
+
+Import all marketing components with:
+
+```tsx
+import {
+  Hero,
+  HeroTitle,
+  GradientText,
+  // etc.
+} from "@kit/ui/marketing";
+```
+
+Key marketing components:
+
+- `Hero` - Hero sections [hero.tsx](mdc:packages/ui/src/makerkit/marketing/hero.tsx)
+- `SecondaryHero` [secondary-hero.tsx](mdc:packages/ui/src/makerkit/marketing/secondary-hero.tsx)
+- `FeatureCard`, `FeatureGrid` - Feature showcases [feature-card.tsx](mdc:packages/ui/src/makerkit/marketing/feature-card.tsx)
+- `Footer` - Page Footer [footer.tsx](mdc:packages/ui/src/makerkit/marketing/footer.tsx)
+- `Header` - Page Header [header.tsx](mdc:packages/ui/src/makerkit/marketing/header.tsx)
+- `NewsletterSignup` - Email collection [newsletter-signup-container.tsx](mdc:packages/ui/src/makerkit/marketing/newsletter-signup-container.tsx)
+- `ComingSoon` - Coming soon page template [coming-soon.tsx](mdc:packages/ui/src/makerkit/marketing/coming-soon.tsx)

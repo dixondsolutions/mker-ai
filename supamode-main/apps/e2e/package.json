@@ -1,0 +1,26 @@
+{
+  "name": "e2e",
+  "version": "1.0.0",
+  "description": "E2E tests for Supamode",
+  "main": "index.js",
+  "scripts": {
+    "report": "playwright show-report",
+    "e2e": "playwright test --max-failures=1 --workers=2",
+    "e2e:ui": "playwright test --ui",
+    "clean": "git clean -xdf .turbo node_modules",
+    "format": "prettier --check \"**/*.{ts,tsx}\"",
+    "format:fix": "prettier --write \"**/*.{ts,tsx}\""
+  },
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.10.0",
+  "devDependencies": {
+    "@kit/prettier-config": "workspace:*",
+    "@kit/supabase": "workspace:*",
+    "@kit/typescript-config": "workspace:*",
+    "@playwright/test": "catalog:",
+    "@types/node": "catalog:",
+    "dotenv": "catalog:"
+  },
+  "prettier": "@kit/prettier-config"
+}

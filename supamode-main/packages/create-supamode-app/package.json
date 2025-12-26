@@ -1,0 +1,38 @@
+{
+  "name": "create-supamode-app",
+  "version": "0.1.1",
+  "description": "Create a new Supamode application with one command",
+  "main": "index.js",
+  "bin": {
+    "create-supamode-app": "index.js"
+  },
+  "scripts": {
+    "clean": "rm -rf .turbo node_modules"
+  },
+  "keywords": [
+    "supamode",
+    "supabase",
+    "admin",
+    "dashboard",
+    "cli",
+    "create",
+    "scaffold"
+  ],
+  "author": {
+    "name": "Makerkit",
+    "email": "info@makerkit.dev",
+    "url": "https://makerkit.dev"
+  },
+  "dependencies": {
+    "chalk": "5.6.2",
+    "commander": "14.0.2",
+    "prompts": "^2.4.2"
+  },
+  "files": [
+    "index.js",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

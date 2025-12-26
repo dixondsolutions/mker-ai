@@ -1,18 +1,38 @@
+import FirecrawlApp from '@mendable/firecrawl-js';
+
 export default class Crawler {
-  async getSitemapLinks(url: string) {
-    const { Sitemapper } = await import('./sitemap-crawler');
-    const sitemapUrl = this.getSitemapUrl(url);
-    const sitemapper = new Sitemapper({ url: sitemapUrl });
+  private app: FirecrawlApp;
 
-    const { sites } = await sitemapper.fetch(sitemapUrl);
+  constructor() {
+    const apiKey = process.env.FIRECRAWL_API_KEY;
 
-    return sites;
+    if (!apiKey) {
+      throw new Error('FIRECRAWL_API_KEY is not set');
+    }
+
+    this.app = new FirecrawlApp({ apiKey });
   }
 
   async crawl(url: string) {
-    const response = await fetch(url);
+    const response = await this.app.scrape(url, {
+      formats: ['markdown'],
+    });
 
-    return await response.text();
+    if (!response || !response.markdown) {
+      throw new Error(`Failed to crawl URL: No markdown returned`);
+    }
+
+    return response.markdown;
+  }
+
+  async getSitemapLinks(url: string) {
+    const response = await this.app.map(url);
+
+    if (!response || !response.links) {
+      throw new Error(`Failed to map URL: No links returned`);
+    }
+
+    return response.links;
   }
 
   filterLinks(
@@ -39,22 +59,5 @@ export default class Crawler {
 
       return isAllowed && !isDisallowed;
     });
-  }
-
-  /**
-   * Get the URL of the sitemap for a given website URL. The sitemap URL is inferred from the website URL.
-   * If the website URL ends with `.xml`, it is assumed to be the sitemap URL.
-   * TODO: this function does not take into account sitemap index files or sitemaps that are not named `sitemap.xml`.
-   * Solution: crawl the robots.txt file and look for the sitemap URL.
-   *
-   * @param {string} websiteUrl - The URL of the website.
-   * @return {string} - The URL of the sitemap.
-   */
-  private getSitemapUrl(websiteUrl: string) {
-    if (websiteUrl.endsWith('.xml')) {
-      return websiteUrl;
-    }
-
-    return `${websiteUrl}/sitemap.xml`;
   }
 }

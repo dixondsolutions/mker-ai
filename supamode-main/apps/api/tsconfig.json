@@ -1,0 +1,12 @@
+{
+  "extends": "@kit/typescript-config/base.json",
+  "compilerOptions": {
+    "lib": ["ESNext", "DOM"],
+    "types": [],
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true
+  },
+  "include": ["**/*.ts", "**/*.tsx"]
+}

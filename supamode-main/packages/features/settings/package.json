@@ -1,0 +1,65 @@
+{
+  "name": "@kit/settings",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "clean": "git clean -xdf .next .turbo node_modules",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --check \"**/*.{js,cjs,mjs,ts,tsx,md,json}\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "exports": {
+    "./router": "./src/router.tsx",
+    "./routes": "./src/api/routes/index.ts",
+    "./loaders": "./src/loaders.ts",
+    "./services": "./src/api/services/index.ts",
+    "./ui": "./src/components/index.ts"
+  },
+  "devDependencies": {
+    "@dnd-kit/core": "catalog:",
+    "@dnd-kit/modifiers": "catalog:",
+    "@dnd-kit/sortable": "catalog:",
+    "@dnd-kit/utilities": "catalog:",
+    "@hookform/resolvers": "catalog:",
+    "@kit/api": "0.1.0",
+    "@kit/audit-logs": "workspace:*",
+    "@kit/auth": "0.1.0",
+    "@kit/eslint-config": "0.1.0",
+    "@kit/formatters": "workspace:*",
+    "@kit/permissions": "workspace:*",
+    "@kit/prettier-config": "0.1.0",
+    "@kit/shared": "workspace:*",
+    "@kit/supabase": "0.1.0",
+    "@kit/types": "workspace:*",
+    "@kit/typescript-config": "0.1.0",
+    "@kit/ui": "0.1.0",
+    "@marsidev/react-turnstile": "catalog:",
+    "@radix-ui/react-icons": "catalog:",
+    "@supabase/supabase-js": "catalog:",
+    "@tanstack/react-query": "catalog:",
+    "@tanstack/react-table": "catalog:",
+    "@types/react": "catalog:",
+    "drizzle-orm": "catalog:",
+    "hono": "catalog:",
+    "lucide-react": "catalog:",
+    "react": "catalog:",
+    "react-fast-compare": "catalog:",
+    "react-hook-form": "catalog:",
+    "react-router": "catalog:",
+    "rxjs": "catalog:",
+    "zod": "catalog:"
+  },
+  "prettier": "@kit/prettier-config",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "src/*"
+      ]
+    }
+  },
+  "dependencies": {
+    "@hono/zod-validator": "catalog:",
+    "date-fns": "catalog:"
+  }
+}

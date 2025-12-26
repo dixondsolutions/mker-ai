@@ -1,0 +1,40 @@
+---
+description: Detailed Database Schema and Architecture
+globs: 
+alwaysApply: true
+---
+# Database Rules
+
+## Database Architecture
+- Supabase uses Postgres
+- We strive to create a safe, robust, performant schema
+- Accounts are the general concept of a user account, defined by the having the same ID as Supabase Auth's users (personal). They can be a team account or a personal account.
+- Generally speaking, other tables will be used to store data related to the account. For example, a table `notes` would have a foreign key `account_id` to link it to an account.
+
+## Schemas
+- The DB schemas are available at `apps/web/supabase/schemas`
+- To edit the DB schema, we can either change the schema files, or created new ones
+- To create a new schema, create a file at `apps/web/supabase/schemas/<number>-<name>.sql`
+
+## Migrations
+- After creating a schema, we can create a migration
+- Use the command `pnpm --filter web supabase:db:diff` for creating migrations from schemas
+- After generating a migration, reset the database for applying the changes using the command `pnpm --filter web supabase:db:reset`
+
+## Security & RLS
+- Using RLS, we must ensure that only the account owner can access the data. Always write safe RLS policies and ensure that the policies are enforced.
+- Unless specified, always enable RLS when creating a table. Propose the required RLS policies ensuring the safety of the data.
+- Always consider any required constraints and triggers are in place for data consistency
+- Always consider the compromises you need to make and explain them so I can make an educated decision. Follow up with the considerations make and explain them.
+- Always consider the security of the data and explain the security implications of the data.
+- Always use Postgres schemas explicitly (e.g., `supamode.accounts`)
+- Consider the required compromises between simplicity, functionality and developer experience. However, never compromise on security, which is paramount and fundamental.
+- Use existing helper functions for access control instead of making your own queries, unless unavailable
+
+## Schema Overview
+
+Makerkit uses a Supabase Postgres database with a well-defined schema focused on multi-tenancy through the concepts of accounts (both personal and team) and robust permission systems.
+
+### Database Schema
+
+Refer to the Drizzle schema for a detailed overview [schema.ts](mdc:packages/supabase/src/drizzle/schema.ts) and its relationships at [relations.ts](mdc:packages/supabase/src/drizzle/relations.ts)

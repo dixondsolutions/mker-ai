@@ -1,0 +1,13 @@
+{
+  "extends": "@kit/typescript-config/react-library.json",
+  "compilerOptions": {
+    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json"
+  },
+  "include": [
+    "*.ts",
+    "src",
+    "../../captcha/src/captcha",
+    "../../shared/src/utils/__tests__/build-resource-url.test.ts"
+  ],
+  "exclude": ["node_modules"]
+}
