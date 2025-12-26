@@ -35,6 +35,12 @@ services:
       context: ./supamode-main
       target: api-runner
     restart: unless-stopped
+    # Force IPv4 for Supabase pooler connection
+    extra_hosts:
+      - "aws-0-us-east-1.pooler.supabase.com:44.216.29.125"
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
     environment:
       NODE_ENV: production
       PORT: 3000
